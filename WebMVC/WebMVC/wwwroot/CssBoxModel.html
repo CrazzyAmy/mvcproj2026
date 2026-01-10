@@ -1,0 +1,170 @@
+﻿<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="utf-8" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS BoxModel</title>
+    <style>
+        .normal-div {
+            width: 400px;
+            border-radius: 10px;
+            margin-top: 20px;
+            margin-left: 10px;
+            margin-bottom: 5px;
+            padding: 5px 10px 15px 20px;
+            border: 3px solid gray;
+            background-color: cornflowerblue;
+            font: bold;
+        }
+
+        .box-demo {
+            width: 400px;
+            border-radius: 10px;
+            margin: 5px;
+            padding: 5px 10px 15px 20px;
+            border: 3px solid gray;
+        }
+
+        /* 展示border的盒子 */
+        .border-sizing1 {
+            width: 400px;
+            height: 200px;
+            background-color: #e74c3c;
+            border: 2px solid #c0392b;
+            color: white;
+            margin: 20px;
+            padding: 10px;
+            border-radius: 5px;
+            box-sizing: content-box; /* 預設值 */
+        }
+
+        /* 展示border的盒子 */
+        .border-sizing2 {
+            width: 400px;
+            height: 300px;
+            background-color: #e74c3c;
+            border: 2px solid #c0392b;
+            color: white;
+            margin: 20px;
+            padding: 10px;
+            border-radius: 5px;
+            box-sizing: border-box; /* 包含 padding 和 border */
+        }
+
+        .container {
+            margin: 20px;
+            padding: 20px;
+            background-color: #f8f9fa;
+            border-radius: 5px;
+        }
+
+        .box {
+            width: 100px;
+            height: 100px;
+            background-color: #3498db;
+            color: white;
+            text-align: center;
+            line-height: 100px;
+        }
+
+        /* 1：相等的 margin */
+        .box1 {
+            margin-bottom: 30px;
+            background-color: #e74c3c;
+        }
+
+        .box2 {
+            margin-top: 30px;
+            background-color: #2ecc71;
+        }
+
+        /* 2：不相等的 margin */
+        .box3 {
+            margin-bottom: 50px;
+            background-color: #e74c3c;
+        }
+
+        .box4 {
+            margin-top: 30px;
+            background-color: #2ecc71;
+        }
+
+        /*3：負值 margin */
+        .box5 {
+            margin-bottom: 50px;
+            /* margin-bottom: 0px;
+            margin-left: 10px;*/
+            background-color: #e74c3c;
+        }
+
+        .box6 {
+            margin-top: -20px;
+            background-color: #2ecc71;
+        }
+    </style>
+</head>
+<body>
+    <div class="box-demo">
+        CSS Box Model 盒⼦模型 Box Model 盒⼦模型是 CSS 的基礎，CSS 的佈局主要基於「Box 模型」，Box
+        模型主要是由Content (內容)、Padding (內邊距)、Border (邊框) 和 Margin (外邊距)四個部分所組成，其
+        中Padding、Border 和 Margin 都採⽤相同的語法定義寬度。<br />
+        1. 4個邊分開定義，上、右、下、左<br />
+        2. 2個值，上下、左右<br />
+        3. 3個值，上、左右、下<br />
+        4. 1個值，同時4個邊相同定義<br />
+    </div>
+
+    <div class="normal-div">
+        CSS Box Model 盒⼦模型的實際 UI 佔用寬度取決於 box-sizing 屬性值，該屬性值有content-box／border-box　二種<br />
+        小技巧是一律加上 box-sizing: border-box;，避免尺寸失控
+    </div>
+
+    <div class="border-sizing1">
+        (預設值)content-box：width/height 只包含內容區域
+        <p>
+            在 content-box 模式下，width 和 height 指的是內容區域的寬高。
+            padding 和 border 會額外加到設定的寬高上。<br />
+            設定寬度：200px;<br />
+            實際寬度=250px（200px + 40px padding + 10px border）
+        </p>
+    </div>
+    <div class="border-sizing2">
+        border-box：width/height 包含 padding 和 border
+        <p>
+            在 border-box 模式下，width 和 height 包含了 padding 和 border。
+            實際的內容區域會自動縮小以容納 padding 和 border。<br />
+            設定寬度：200px;<br />
+            實際寬度=200px（包含 padding 和 border）
+        </p>
+        <ol>
+            <li>避免意外的溢出問題</li>
+            <li>更容易預測元素的實際大小</li>
+            <li>簡化寬度計算</li>
+        </ol>
+    </div>
+    <hr />
+    <h1 style="text-align: center;">HTML CSS Box Model 盒⼦模型 - Margin 合併示範</h1>
+    <div class="container">
+        <h3>1. 相等的 Margin - 實際間距: 30px</h3>
+        <div class="box box1">上方元素</div>
+        <div class="box box2">下方元素</div>
+        <p>當兩個 margin 相等時（30px），實際間距為 30px</p>
+    </div>
+
+    <div class="container">
+        <h3>2. 不相等的 Margin - 實際間距: 50px</h3>
+        <div class="box box3">上方元素</div>
+        <div class="box box4">下方元素</div>
+        <p>當兩個 margin 不相等時（50px 和 30px），取較大值 50px</p>
+    </div>
+
+    <div class="container">
+        <h3>3. 負值 Margin - 實際間距: 30px</h3>
+        <div class="box box5">上方元素</div>
+
+        <div class="box box6">下方元素</div>
+        <p>當有負值時（50px 和 -20px），從最大值中減去負值的絕對值</p>
+    </div>
+</body>
+</html>

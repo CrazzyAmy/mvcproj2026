@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ASP.NET MVC 概念介紹</title>
+    <style>
+        body {
+            font-family: 'Microsoft JhengHei', sans-serif;
+            line-height: 1.8;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+
+        header {
+            background-color: #4a90e2;
+            color: white;
+            text-align: center;
+            padding: 2rem 1rem;
+        }
+
+        main {
+            max-width: 900px;
+            margin: auto;
+            padding: 2rem;
+            background-color: white;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            border-radius: 10px;
+        }
+
+        h1, h2 {
+            color: #4a90e2;
+        }
+
+        h3 {
+            color: #5ba3f5;
+            margin-top: 1.5rem;
+        }
+
+        section {
+            margin-bottom: 2rem;
+        }
+
+        ul, ol {
+            padding-left: 1.5rem;
+        }
+
+        li {
+            margin-bottom: 0.5rem;
+        }
+
+        .highlight {
+            background-color: #e8f4fd;
+            padding: 1rem;
+            border-left: 4px solid #4a90e2;
+            margin: 1rem 0;
+        }
+
+        footer {
+            text-align: center;
+            padding: 1rem;
+            font-size: 0.9rem;
+            color: #777;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>ASP.NET MVC 概念介紹</h1>
+        <p>了解現代化 .NET Web 開發框架的核心思想</p>
+    </header>
+
+    <main>
+        <section>
+            <h2>什麼是 ASP.NET MVC？</h2>
+            <p>
+                ASP.NET MVC 是微軟推出的一種 Web 應用程式開發框架，基於 Model-View-Controller 設計模式，
+                將應用程式分為三個主要部分：模型（Model）、視圖（View）和控制器（Controller），以達到更好的程式結構、維護性與可測試性。
+            </p>
+            <p>
+                這種架構模式的核心理念是「關注點分離」（Separation of Concerns），讓不同的程式碼負責不同的職責，
+                避免將所有邏輯混雜在一起，使得程式碼更容易理解、測試和維護。
+            </p>
+        </section>
+
+        <section>
+            <h2>為什麼要使用 MVC 模式？</h2>
+            <p>在傳統的 Web 開發中，經常會遇到以下問題：</p>
+            <ul>
+                <li><strong>程式碼混雜</strong>：商業邏輯、資料處理和顯示邏輯混在一起，難以維護</li>
+                <li><strong>重複使用困難</strong>：同樣的功能在不同頁面需要重新撰寫</li>
+                <li><strong>測試困難</strong>：由於邏輯混雜，很難針對特定功能進行單元測試</li>
+                <li><strong>團隊協作問題</strong>：前端設計師和後端開發者難以同時工作</li>
+            </ul>
+            <p>MVC 模式有效解決了這些問題，提供了一個清晰的架構框架。</p>
+        </section>
+
+        <section>
+            <h2>MVC 三大核心組件</h2>
+
+            <h3>模型（Model）</h3>
+            <p>
+                <strong>負責：</strong>資料結構、商業邏輯、資料驗證和資料庫存取。
+            </p>
+            <p>
+                模型是應用程式的核心，它定義了資料的結構和行為。例如，在一個部落格系統中，
+                文章（Article）模型會定義文章的標題、內容、作者、發布時間等屬性，
+                以及發布文章、編輯文章等相關的商業邏輯。
+            </p>
+            <p>
+                <strong>重要原則：</strong>模型應該獨立於使用者介面，可以在不同的視圖中重複使用。
+            </p>
+
+            <h3>視圖（View）</h3>
+            <p>
+                <strong>負責：</strong>使用者介面的呈現、資料的顯示格式、使用者互動元素。
+            </p>
+            <p>
+                視圖決定資料如何呈現給使用者。同一組資料可以有多種不同的視圖表現形式，
+                例如文章清單可以顯示為表格形式、卡片形式或清單形式。
+                視圖應該只負責顯示邏輯，不包含商業邏輯。
+            </p>
+            <p>
+                <strong>重要原則：</strong>視圖應該是被動的，只負責接收資料並顯示，不處理資料邏輯。
+            </p>
+
+            <h3>控制器（Controller）</h3>
+            <p>
+                <strong>負責：</strong>處理使用者請求、協調模型和視圖、決定應用程式流程。
+            </p>
+            <p>
+                控制器是 MVC 架構的協調者，它接收使用者的操作（如點擊按鈕、提交表單），
+                決定要呼叫哪些模型來處理資料，然後選擇適當的視圖來回應使用者。
+                控制器將使用者的操作轉換為對模型的操作。
+            </p>
+            <p>
+                <strong>重要原則：</strong>控制器應該保持簡潔，主要負責流程控制，複雜的商業邏輯應該放在模型中。
+            </p>
+        </section>
+
+        <section>
+            <h2>MVC 運作流程</h2>
+            <p>了解 MVC 各組件的互動關係有助於更好地掌握這個架構模式：</p>
+            <ol>
+                <li><strong>使用者操作：</strong>使用者透過瀏覽器發送請求（如點擊連結、提交表單）</li>
+                <li><strong>路由解析：</strong>系統根據 URL 決定呼叫哪個控制器的哪個方法</li>
+                <li><strong>控制器處理：</strong>控制器接收請求，解析參數，決定要執行的動作</li>
+                <li><strong>模型操作：</strong>控制器呼叫相關的模型來處理資料（查詢、新增、修改、刪除）</li>
+                <li><strong>資料傳遞：</strong>控制器將處理結果傳遞給適當的視圖</li>
+                <li><strong>視圖渲染：</strong>視圖將資料渲染成 HTML 回應給使用者</li>
+                <li><strong>回應顯示：</strong>使用者在瀏覽器中看到最終結果</li>
+            </ol>
+        </section>
+
+        <section>
+            <h2>MVC 的核心概念</h2>
+
+            <h3>關注點分離（Separation of Concerns）</h3>
+            <p>
+                這是 MVC 最重要的設計原則。每個組件都有明確的職責範圍，
+                不會互相干擾。這樣的設計讓程式碼更容易理解、修改和測試。
+            </p>
+
+            <h3>單一職責原則（Single Responsibility Principle）</h3>
+            <p>
+                每個類別或組件都應該只有一個改變的理由。模型專注於資料和商業邏輯，
+                視圖專注於呈現，控制器專注於流程控制。
+            </p>
+
+            <h3>依賴倒置（Dependency Inversion）</h3>
+            <p>
+                高層模組不應該依賴低層模組，兩者都應該依賴於抽象。
+                這讓系統更靈活，更容易進行單元測試和模組替換。
+            </p>
+
+            <h3>鬆散耦合（Loose Coupling）</h3>
+            <p>
+                各組件之間的依賴關係降到最低，一個組件的改變不會大幅影響其他組件。
+                這提高了系統的可維護性和可擴展性。
+            </p>
+        </section>
+
+        <section>
+            <h2>ASP.NET MVC 的優點</h2>
+
+            <h3>架構與開發優勢</h3>
+            <ul>
+                <li><strong>清晰的程式架構：</strong>分層設計讓程式碼結構清楚，便於維護與擴充</li>
+                <li><strong>高度可測試性：</strong>支援單元測試，各組件可以獨立測試，提升開發品質</li>
+                <li><strong>程式碼重用性：</strong>模型和控制器可以在不同視圖中重複使用</li>
+                <li><strong>團隊協作友善：</strong>前端設計師可以專注於視圖，後端開發者專注於邏輯</li>
+            </ul>
+
+            <h3>技術與效能優勢</h3>
+            <ul>
+                <li><strong>靈活的路由系統：</strong>高度可客製化的 URL 路由，支援 SEO 友善的網址</li>
+                <li><strong>前端技術整合：</strong>與 JavaScript、AJAX、jQuery 等前端技術整合良好</li>
+                <li><strong>多種視圖引擎：</strong>支援 Razor、Web Forms 等多種視圖引擎</li>
+                <li><strong>狀態管理：</strong>無狀態設計，提升伺服器效能和可擴展性</li>
+            </ul>
+
+            <h3>企業級開發優勢</h3>
+            <ul>
+                <li><strong>安全性：</strong>內建防範 CSRF、XSS 等常見網路攻擊的機制</li>
+                <li><strong>國際化支援：</strong>完整的多語言和本地化支援</li>
+                <li><strong>延展性：</strong>易於水平擴展，適合大型企業應用</li>
+                <li><strong>生態系統：</strong>豐富的第三方函式庫和工具支援</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>MVC 與其他模式的比較</h2>
+
+            <h3>MVC vs. Web Forms</h3>
+            <p>
+                <strong>Web Forms：</strong>事件驅動模式，類似桌面應用程式開發，
+                但狀態管理複雜，HTML 輸出控制較少。
+            </p>
+            <p>
+                <strong>MVC：</strong>更接近 Web 的本質，完全控制 HTML 輸出，
+                無狀態設計，更適合現代 Web 開發需求。
+            </p>
+
+            <h3>MVC vs. MVP (Model-View-Presenter)</h3>
+            <p>
+                <strong>MVP：</strong>Presenter 負責所有 UI 邏輯，View 更被動。
+            </p>
+            <p>
+                <strong>MVC：</strong>Controller 主要負責流程控制，View 可以直接觀察 Model。
+            </p>
+
+            <h3>MVC vs. MVVM (Model-View-ViewModel)</h3>
+            <p>
+                <strong>MVVM：</strong>透過資料繫結實現 View 和 ViewModel 的同步，
+                常用於 WPF、Silverlight 等富客戶端應用。
+            </p>
+            <p>
+                <strong>MVC：</strong>更適合 Web 應用，透過 HTTP 請求/回應模式運作。
+            </p>
+        </section>
+
+        <section>
+            <h2>典型的開發流程</h2>
+            <p>
+                在 ASP.NET MVC 中，開發者通常會先設計模型以定義資料結構與商業規則，
+                接著撰寫控制器來處理使用者請求並協調資料，最後設計視圖來呈現內容。
+                這種分層方式有助於多人協作與長期維護。
+            </p>
+
+            <h3>1. 需求分析與設計階段</h3>
+            <ul>
+                <li><strong>功能需求分析：</strong>了解系統需要實現的功能和業務邏輯</li>
+                <li><strong>資料結構設計：</strong>設計資料庫結構和實體關係</li>
+                <li><strong>使用者介面設計：</strong>規劃使用者操作流程和介面佈局</li>
+                <li><strong>系統架構規劃：</strong>決定專案結構和技術選型</li>
+            </ul>
+
+            <h3>2. 模型開發階段</h3>
+            <ul>
+                <li><strong>建立實體類別：</strong>定義資料模型和屬性</li>
+                <li><strong>資料驗證規則：</strong>設定資料驗證和業務規則</li>
+                <li><strong>資料存取層：</strong>建立與資料庫互動的邏輯</li>
+                <li><strong>商業邏輯實作：</strong>實作核心業務功能</li>
+            </ul>
+
+            <h3>3. 控制器開發階段</h3>
+            <ul>
+                <li><strong>路由設計：</strong>規劃 URL 結構和路由規則</li>
+                <li><strong>動作方法：</strong>實作處理各種請求的控制器方法</li>
+                <li><strong>資料傳遞：</strong>設計模型到視圖的資料傳遞機制</li>
+                <li><strong>錯誤處理：</strong>實作例外處理和錯誤回應</li>
+            </ul>
+
+            <h3>4. 視圖開發階段</h3>
+            <ul>
+                <li><strong>版面設計：</strong>建立共用的版面配置</li>
+                <li><strong>視圖模板：</strong>實作各個功能的視圖頁面</li>
+                <li><strong>使用者體驗：</strong>優化介面互動和回應效果</li>
+                <li><strong>前端整合：</strong>整合 CSS、JavaScript 等前端資源</li>
+            </ul>
+
+            <h3>5. 測試與部署階段</h3>
+            <ul>
+                <li><strong>單元測試：</strong>針對模型和控制器撰寫測試程式</li>
+                <li><strong>整合測試：</strong>測試各組件之間的協作是否正常</li>
+                <li><strong>效能測試：</strong>檢查系統效能和回應時間</li>
+                <li><strong>部署設定：</strong>準備正式環境的部署設定</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>MVC 最佳實務建議</h2>
+
+            <h3>模型設計原則</h3>
+            <ul>
+                <li><strong>單一職責：</strong>每個模型類別只負責一個特定的業務實體</li>
+                <li><strong>資料驗證：</strong>在模型層實作完整的資料驗證邏輯</li>
+                <li><strong>業務邏輯封裝：</strong>將複雜的業務規則封裝在模型中</li>
+                <li><strong>資料一致性：</strong>確保資料的完整性和一致性</li>
+            </ul>
+
+            <h3>控制器設計原則</h3>
+            <ul>
+                <li><strong>保持簡潔：</strong>控制器應該薄薄一層，主要負責協調</li>
+                <li><strong>避免複雜邏輯：</strong>複雜的業務邏輯應該委託給模型處理</li>
+                <li><strong>統一的錯誤處理：</strong>建立一致的錯誤處理機制</li>
+                <li><strong>安全性考量：</strong>實作適當的授權和輸入驗證</li>
+            </ul>
+
+            <h3>視圖設計原則</h3>
+            <ul>
+                <li><strong>邏輯分離：</strong>視圖中避免複雜的程式邏輯</li>
+                <li><strong>可重用性：</strong>建立可重用的部分視圖和輔助方法</li>
+                <li><strong>效能優化：</strong>合理使用快取和資源壓縮</li>
+                <li><strong>響應式設計：</strong>確保在不同裝置上的顯示效果</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>學習 MVC 的建議步驟</h2>
+            <ol>
+                <li><strong>理解概念：</strong>深入了解 MVC 模式的核心思想和設計原則</li>
+                <li><strong>基礎練習：</strong>從簡單的 CRUD 操作開始練習</li>
+                <li><strong>路由學習：</strong>掌握路由系統的設定和自訂</li>
+                <li><strong>資料處理：</strong>學習 Entity Framework 等資料存取技術</li>
+                <li><strong>進階功能：</strong>學習過濾器、區域、相依性注入等進階特性</li>
+                <li><strong>實戰專案：</strong>透過完整的專案來鞏固所學知識</li>
+                <li><strong>效能優化：</strong>學習快取、分頁、非同步處理等效能優化技巧</li>
+                <li><strong>安全性：</strong>掌握 Web 應用程式的安全性最佳實務</li>
+            </ol>
+        </section>
+    </main>
+
+    <footer>
+        &copy; 2025 ASP.NET MVC 概念簡介. 保留所有權利。
+    </footer>
+</body>
+</html>

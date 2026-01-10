@@ -1,0 +1,399 @@
+﻿<!DOCTYPE html>
+<html lang="zh-tw">
+<head>
+    <meta charset="utf-8" />
+    <title>HTML5 Storage 展示</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Microsoft JhengHei', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .header p {
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+
+        .content {
+            padding: 30px;
+        }
+
+        .info-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .info-card {
+            background: #f8fafc;
+            border: 2px solid #e2e8f0;
+            border-radius: 10px;
+            padding: 20px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .info-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .info-card h3 {
+            color: #4f46e5;
+            font-size: 1.3em;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+
+        .info-card h3::before {
+            content: "💾";
+            margin-right: 10px;
+            font-size: 1.2em;
+        }
+
+        .info-card.session h3::before {
+            content: "⏰";
+        }
+
+        .demo-section {
+            background: #ffffff;
+            border-radius: 10px;
+            padding: 25px;
+            border: 2px solid #e2e8f0;
+        }
+
+        .demo-title {
+            color: #1e293b;
+            font-size: 1.5em;
+            margin-bottom: 20px;
+            text-align: center;
+            border-bottom: 2px solid #4f46e5;
+            padding-bottom: 10px;
+        }
+
+        .input-group {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        .form-field {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            font-weight: bold;
+            color: #374151;
+            margin-bottom: 5px;
+            font-size: 0.9em;
+        }
+
+        input[type="text"] {
+            padding: 12px;
+            border: 2px solid #d1d5db;
+            border-radius: 8px;
+            font-size: 1em;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        input[type="text"]:focus {
+            outline: none;
+            border-color: #4f46e5;
+            box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+        }
+
+        .button-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        button {
+            padding: 12px 20px;
+            border: none;
+            border-radius: 8px;
+            font-size: 0.95em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .btn-save {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            color: white;
+        }
+
+        .btn-load-local {
+            background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+            color: white;
+        }
+
+        .btn-load-session {
+            background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);
+            color: white;
+        }
+
+        .btn-clear {
+            background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+            color: white;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        button:active {
+            transform: translateY(0);
+        }
+
+        @media (max-width: 768px) {
+            .info-section {
+                grid-template-columns: 1fr;
+            }
+            
+            .input-group {
+                grid-template-columns: 1fr;
+            }
+            
+            .button-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .header h1 {
+                font-size: 2em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>HTML5 Storage 展示</h1>
+            <p>瞭解 localStorage 與 sessionStorage 的使用方式</p>
+        </div>
+
+        <div class="content">
+            <div class="info-section">
+                <div class="info-card session">
+                    <h3>SessionStorage</h3>
+                    <p>使用 key/value pair 的方式給值或取值</p>
+                    <p><strong>特性：</strong>瀏覽器視窗或分頁（tab）關閉就會消失</p>
+                    <p><strong>生命週期：</strong>僅限當前 session</p>
+                </div>
+                
+                <div class="info-card">
+                    <h3>LocalStorage</h3>
+                    <p>使用 key/value pair 的方式給值或取值</p>
+                    <p><strong>特性：</strong>永久性儲存，除非手動清除</p>
+                    <p><strong>生命週期：</strong>持續保存直到清除</p>
+                </div>
+            </div>
+
+            <div class="demo-section">
+                <h2 class="demo-title">🚀 Storage 操作展示</h2>
+                
+                <div class="input-group">
+                    <div class="form-field">
+                        <label for="inputarea">輸入資料</label>
+                        <input type="text" id="inputarea" placeholder="請輸入要儲存的資料..." />
+                    </div>
+                    
+                    <div class="form-field">
+                        <label for="outputarea">輸出結果</label>
+                        <input type="text" id="outputarea" placeholder="載入的資料將顯示在此..." readonly />
+                    </div>
+                </div>
+
+                <div class="button-grid">
+                    <button class="btn-save" onclick="SaveToStorage()">💾 儲存至 Storage</button>
+                    <button class="btn-load-local" onclick="LoadFromLocalStorage()">📁 從 LocalStorage 載入</button>
+                    <button class="btn-load-session" onclick="LoadFromSessionStorage()">⏰ 從 SessionStorage 載入</button>
+                    <button class="btn-clear" onclick="dellocalStorage()">🗑️ 清除 LocalStorage</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        /**
+         * 儲存資料到 localStorage 和 sessionStorage
+         * 此函式會同時將輸入的資料儲存到兩種不同的 Storage 中
+         */
+        function SaveToStorage() {
+            // 取得輸入欄位的 DOM 元素
+            var inputarea = document.getElementById("inputarea");
+            
+            // 檢查輸入是否為空
+            if (!inputarea.value.trim()) {
+                alert("請輸入要儲存的資料！");
+                return;
+            }
+
+            try {
+                // 方法一：使用 setItem() 方法儲存到 localStorage
+                window.localStorage.setItem("mydata", inputarea.value);
+                
+                // 方法二：直接賦值的方式儲存到 sessionStorage
+                window.sessionStorage.mydata = inputarea.value;
+                
+                // 其他可用的 localStorage 儲存方式（註解供參考）：
+                // window.localStorage["mydata"] = inputarea.value;  // 陣列索引方式
+                // window.localStorage.mydata = inputarea.value;     // 屬性方式
+                
+                // 顯示成功訊息
+                alert("資料已成功儲存到 localStorage 和 sessionStorage！");
+                
+                // 清空輸入欄位
+                inputarea.value = "";
+                
+            } catch (error) {
+                // 處理儲存失敗的情況（例如：儲存空間不足）
+                console.error("儲存失敗：", error);
+                alert("儲存失敗，請稍後再試！");
+            }
+        }
+
+        /**
+         * 從 localStorage 載入資料
+         * 讀取之前儲存在 localStorage 中的資料並顯示
+         */
+        function LoadFromLocalStorage() {
+            // 取得輸出欄位的 DOM 元素
+            var outputarea = document.getElementById("outputarea");
+            
+            try {
+                // 方法一：使用屬性方式讀取 localStorage 資料
+                var data = window.localStorage.mydata;
+                
+                // 其他可用的讀取方式（註解供參考）：
+                // var data = window.localStorage["mydata"];        // 陣列索引方式
+                // var data = window.localStorage.getItem("mydata"); // getItem() 方法
+                
+                // 檢查資料是否存在
+                if (data !== undefined && data !== null) {
+                    outputarea.value = data;
+                    console.log("從 localStorage 載入資料：", data);
+                } else {
+                    outputarea.value = "";
+                    alert("localStorage 中沒有找到資料！");
+                }
+                
+            } catch (error) {
+                // 處理讀取失敗的情況
+                console.error("讀取 localStorage 失敗：", error);
+                alert("讀取資料失敗！");
+            }
+        }
+
+        /**
+         * 從 sessionStorage 載入資料
+         * 讀取之前儲存在 sessionStorage 中的資料並顯示
+         */
+        function LoadFromSessionStorage() {
+            // 取得輸出欄位的 DOM 元素
+            var outputarea = document.getElementById("outputarea");
+            
+            try {
+                // 使用陣列索引方式讀取 sessionStorage 資料
+                var data = window.sessionStorage["mydata"];
+                
+                // 檢查資料是否存在
+                if (data !== undefined && data !== null) {
+                    outputarea.value = data;
+                    console.log("從 sessionStorage 載入資料：", data);
+                } else {
+                    outputarea.value = "";
+                    alert("sessionStorage 中沒有找到資料！");
+                }
+                
+            } catch (error) {
+                // 處理讀取失敗的情況
+                console.error("讀取 sessionStorage 失敗：", error);
+                alert("讀取資料失敗！");
+            }
+        }
+
+        /**
+         * 清除 localStorage 中的所有資料
+         * 這會移除所有儲存在 localStorage 中的資料（不只是我們的 "mydata"）
+         */
+        function dellocalStorage() {
+            // 確認使用者是否真的要清除資料
+            if (confirm("確定要清除所有 localStorage 資料嗎？")) {
+                try {
+                    // 清除所有 localStorage 資料
+                    window.localStorage.clear();
+                    
+                    // 同時清空輸出欄位
+                    document.getElementById("outputarea").value = "";
+                    
+                    alert("localStorage 已清除！");
+                    console.log("localStorage 已被清除");
+                    
+                } catch (error) {
+                    // 處理清除失敗的情況
+                    console.error("清除 localStorage 失敗：", error);
+                    alert("清除失敗！");
+                }
+            }
+        }
+
+        // 頁面載入完成後執行的初始化函式
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log("HTML5 Storage 展示頁面已載入");
+            
+            // 檢查瀏覽器是否支援 localStorage 和 sessionStorage
+            if (typeof(Storage) !== "undefined") {
+                console.log("瀏覽器支援 Web Storage");
+            } else {
+                alert("很抱歉，您的瀏覽器不支援 Web Storage！");
+            }
+            
+            // 為輸入欄位加入 Enter 鍵快速儲存功能
+            document.getElementById("inputarea").addEventListener('keypress', function(event) {
+                if (event.key === 'Enter') {
+                    SaveToStorage();
+                }
+            });
+        });
+
+    </script>
+</body>
+</html>

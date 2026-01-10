@@ -1,0 +1,135 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+@section Styles {
+    <style>
+        .course-card {
+            border: 2px solid #d3d3d3 !important;
+            /* 灰色邊框 */
+            border-radius: 15px !important;
+            /* 增加圓弧角度 */
+            transition: all 0.3s ease;
+            /* 平滑過渡效果 */
+            cursor: pointer;
+            overflow: hidden;
+            /* 確保圖片不會超出圓角 */
+        }
+
+            .course-card:hover {
+                border-color: #007bff !important;
+                /* 滑鼠懸停時變成藍色邊框 */
+                box-shadow: 0 4px 12px rgba(0, 123, 255, 0.15);
+                /* 添加陰影效果 */
+                transform: translateY(-2px);
+                /* 輕微上移效果 */
+            }
+
+            .course-card .card-img-top {
+                border-top-left-radius: 13px !important;
+                border-top-right-radius: 13px !important;
+                /* 確保圖片上方圓角與卡片一致 */
+            }
+    </style>
+}
+
+<div id="courseCarousel" class="carousel slide" data-bs-ride="carousel" style="margin-bottom:20px">
+    <div class="carousel-inner">
+        <div class="carousel-item active" data-bs-interval="2000">
+            <img src="~/Imgs/b5.jpg" class="d-block w-100">
+        </div>
+        <div class="carousel-item" data-bs-interval="2000">
+            <img src="~/Imgs/b6.jpg" class="d-block w-100">
+        </div>
+        <div class="carousel-item" data-bs-interval="2000">
+            <img src="~/Imgs/b3.jpg" class="d-block w-100">
+        </div>
+    </div>
+
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4" style="margin-top:10px">
+        <div class="col" >
+            <div class="card h-100 course-card">
+                <!-- 課程圖片 -->
+                <img src="~/imgs/c1.jpg" class="card-img-top" style="height: 140px; object-fit: cover;">
+                <div class="card-body d-flex flex-column">
+                    <div class="mb-2">
+                        <label class="d-block" style="font-size:18px;font-weight:bold">
+                                C001 -AI Agent 智能助理
+                        </label>
+                        <label class="d-block" style="font-size:14px;color:dodgerblue">授課講師:林OO</label>
+                    </div>
+                    <ul class="list-unstyled mt-auto" style="font-size:12px">
+                        <li>
+                            <strong>上課日期:</strong> 2026/2/1 -2026/1/31
+                        </li>
+                        <li><strong>上課地點:</strong> 線上課程</li>
+                        <li><strong>課程長度(小時):</strong> 12</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card h-100 course-card">
+                <!-- 課程圖片 -->
+                <img src="~/imgs/c1.jpg" class="card-img-top" style="height: 140px; object-fit: cover;">
+                <div class="card-body d-flex flex-column">
+                    <div class="mb-2">
+                        <label class="d-block" style="font-size:18px;font-weight:bold">
+                            C001 -AI Agent 智能助理
+                        </label>
+                        <label class="d-block" style="font-size:14px;color:dodgerblue">授課講師:林OO</label>
+                    </div>
+                    <ul class="list-unstyled mt-auto" style="font-size:12px">
+                        <li>
+                            <strong>上課日期:</strong> 2026/2/1 -2026/1/31
+                        </li>
+                        <li><strong>上課地點:</strong> 線上課程</li>
+                        <li><strong>課程長度(小時):</strong> 12</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card h-100 course-card">
+                <!-- 課程圖片 -->
+                <img src="~/imgs/c1.jpg" class="card-img-top" style="height: 140px; object-fit: cover;">
+                <div class="card-body d-flex flex-column">
+                    <div class="mb-2">
+                        <label class="d-block" style="font-size:18px;font-weight:bold">
+                            C001 -AI Agent 智能助理
+                        </label>
+                        <label class="d-block" style="font-size:14px;color:dodgerblue">授課講師:林OO</label>
+                    </div>
+                    <ul class="list-unstyled mt-auto" style="font-size:12px">
+                        <li>
+                            <strong>上課日期:</strong> 2026/2/1 -2026/1/31
+                        </li>
+                        <li><strong>上課地點:</strong> 線上課程</li>
+                        <li><strong>課程長度(小時):</strong> 12</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card h-100 course-card">
+                <!-- 課程圖片 -->
+                <img src="~/imgs/c1.jpg" class="card-img-top" style="height: 140px; object-fit: cover;">
+                <div class="card-body d-flex flex-column">
+                    <div class="mb-2">
+                        <label class="d-block" style="font-size:18px;font-weight:bold">
+                            C001 -AI Agent 智能助理
+                        </label>
+                        <label class="d-block" style="font-size:14px;color:dodgerblue">授課講師:林OO</label>
+                    </div>
+                    <ul class="list-unstyled mt-auto" style="font-size:12px">
+                        <li>
+                            <strong>上課日期:</strong> 2026/2/1 -2026/1/31
+                        </li>
+                        <li><strong>上課地點:</strong> 線上課程</li>
+                        <li><strong>課程長度(小時):</strong> 12</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

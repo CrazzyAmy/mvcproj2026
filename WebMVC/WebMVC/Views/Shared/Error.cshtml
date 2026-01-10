@@ -1,0 +1,67 @@
+﻿@model ErrorViewModel
+@{
+    ViewData["Title"] = Model?.ErrorTitle ?? "錯誤";
+}
+
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card border-danger">
+                <div class="card-header bg-danger text-white">
+                    <h4 class="mb-0">
+                        <i class="bi bi-exclamation-triangle-fill me-2"></i>
+                        @(Model?.ErrorTitle ?? "發生錯誤")
+                    </h4>
+                </div>
+                <div class="card-body">
+                    @if (Model?.HasCustomError == true)
+                    {
+                        <div class="alert alert-danger" role="alert">
+                            <h5 class="alert-heading">錯誤訊息</h5>
+                            <p class="mb-0">@Model.ErrorMessage</p>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="alert alert-danger" role="alert">
+                            <p class="mb-0">處理您的請求時發生錯誤，請稍後再試。</p>
+                        </div>
+                    }
+
+                    @if (Model?.ShowRequestId == true)
+                    {
+                        <p class="text-muted">
+                            <strong>Request ID:</strong> <code>@Model.RequestId</code>
+                        </p>
+                    }
+
+                    @* 僅在開發環境顯示詳細錯誤資訊 *@
+                    @if (!string.IsNullOrEmpty(Model?.ErrorDetails))
+                    {
+                        <div class="card bg-light mt-3">
+                            <div class="card-header">
+                                <strong>詳細資訊 (開發模式)</strong>
+                            </div>
+                            <div class="card-body">
+                                <pre class="mb-0"
+                                    style="white-space: pre-wrap; word-wrap: break-word;">@Model.ErrorDetails</pre>
+                            </div>
+                        </div>
+                    }
+                </div>
+                <div class="card-footer">
+                    @if (!string.IsNullOrEmpty(Model?.ReturnUrl))
+                    {
+                        <a href="@Model.ReturnUrl" class="btn btn-primary">
+                            @(Model.ReturnText ?? "返回")
+                        </a>
+                    }
+                    else
+                    {
+                        <a href="/" class="btn btn-primary">返回首頁</a>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

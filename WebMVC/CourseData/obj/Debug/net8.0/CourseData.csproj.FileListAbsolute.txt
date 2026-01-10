@@ -1,0 +1,11 @@
+E:\dotNet\TW202501\WebMVC\CourseData\bin\Debug\net8.0\CourseData.deps.json
+E:\dotNet\TW202501\WebMVC\CourseData\bin\Debug\net8.0\CourseData.dll
+E:\dotNet\TW202501\WebMVC\CourseData\bin\Debug\net8.0\CourseData.pdb
+E:\dotNet\TW202501\WebMVC\CourseData\obj\Debug\net8.0\CourseData.GeneratedMSBuildEditorConfig.editorconfig
+E:\dotNet\TW202501\WebMVC\CourseData\obj\Debug\net8.0\CourseData.AssemblyInfoInputs.cache
+E:\dotNet\TW202501\WebMVC\CourseData\obj\Debug\net8.0\CourseData.AssemblyInfo.cs
+E:\dotNet\TW202501\WebMVC\CourseData\obj\Debug\net8.0\CourseData.csproj.CoreCompileInputs.cache
+E:\dotNet\TW202501\WebMVC\CourseData\obj\Debug\net8.0\CourseData.dll
+E:\dotNet\TW202501\WebMVC\CourseData\obj\Debug\net8.0\refint\CourseData.dll
+E:\dotNet\TW202501\WebMVC\CourseData\obj\Debug\net8.0\CourseData.pdb
+E:\dotNet\TW202501\WebMVC\CourseData\obj\Debug\net8.0\ref\CourseData.dll

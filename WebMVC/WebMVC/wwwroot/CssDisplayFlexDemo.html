@@ -1,0 +1,140 @@
+﻿<!DOCTYPE html>
+<html lang="zh-tw">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="A brief description of the page for SEO purposes.">
+    <meta name="author" content="Your Name">
+    <meta name="keywords" content="HTML, CSS, JavaScript, tutorial">
+    <title>CSS Sample</title>
+    <style>
+        /*容器與容器不具有inline效果*/
+        .flex-container {
+            display: flex;
+            width: 800px;
+            height: 200px;
+            margin: 10px;
+            padding: 10px;
+        }
+
+        /*容器與容器具有inline效果*/
+        .inline-flex-container {
+            display: inline-flex;
+            width: auto;
+            height: 150px;
+            margin: 10px;
+            padding: 10px;
+        }
+
+        .flex-item {
+            background-color: #34495e;
+            color: white;
+            padding: 10px;
+            margin: 5px;
+            height: 50px;
+            text-align: center;
+        }
+    </style>
+    <link href="css/mystyles.css" rel="stylesheet" />
+</head>
+<body>
+    <h1 style="text-align: center;">HTML CSS display-flex</h1>
+    <span style="font-size:20px;font:bold">
+        彈性容器flex布局涉及容器container和項⽬items，透過容器元素container樣式改變内部items的布
+        局，屬性值flex與inline-flex在單⼀個彈性容器並無差異，但當⾴⾯上有多個彈性容器時，inline-flex在佈
+        局上就會有inline的效果，不管是屬性值 flex 或 inline-flex ，這兩者都會讓items變為彈性項⽬。
+    </span>
+
+    <div class="flex-container" style="background-color:deepskyblue">
+        <div class="flex-item">
+            div A1
+        </div>
+        <div class="flex-item">
+            div A2
+        </div>
+        <div class="flex-item">
+            div A3
+        </div>
+        <div class="flex-item">
+            div A4
+        </div>
+        <div class="flex-item">
+            div A5
+        </div>
+        <div class="flex-item">
+            div A6
+        </div>
+        <div class="flex-item">
+            div A7
+        </div>
+        <div class="flex-item">
+            div A8
+        </div>
+    </div>
+
+    <div class="flex-container" style="background-color:deepskyblue">
+        <div class="flex-item">
+            div B1
+        </div>
+        <div class="flex-item">
+            div B2
+        </div>
+    </div>
+
+
+    <div class="inline-flex-container" style="background-color:goldenrod">
+        <div class="flex-item">
+            div D1
+        </div>
+        <div class="flex-item">
+            div D2
+        </div>
+    </div>
+
+    <div class="inline-flex-container" style="background-color:goldenrod">
+        <div class="flex-item">
+            div E1
+        </div>
+        <div class="flex-item">
+            div E2
+        </div>
+        <div class="flex-item">
+            div E3
+        </div>
+        <div class="flex-item">
+            div E4
+        </div>
+        <div class="flex-item">
+            div E5
+        </div>
+        <div class="flex-item">
+            div E6
+        </div>
+    </div>
+
+    <hr />
+    <div style="background-color:aquamarine;margin:10px;padding:10px;font-size:20px">
+        display: flex 與 display: inline-block 都可以讓多個 div 水平排列，二者的差異是什麼？
+    </div>
+
+    <div style="margin-top: 50px; font-size: 20px">
+        display: flex，這是一種提供更高靈活性的佈局方法。將一個容器設置為 flex，其子元素（flex項目）將會成為彈性項目。
+        <ol>
+            <li>彈性調整: Flex項目可以自動調整大小，填充可用空間或收縮以避免溢出</li>
+            <li>對齊和排列: 提供了對齊、分佈空間和項目排序的更多控制</li>
+            <li>可輕鬆做到 垂直置中、左右對齊、彈性換行</li>
+            <li>是目前主流的 RWD（響應式設計）基礎工具</li>
+        </ol>
+    </div>
+    <div style="margin-top: 50px; font-size: 20px">
+        display: inline-block
+        <ol>
+            <li>允許元素水平排列，同時保留其block特性（如設置寬度和高度）</li>
+            <li>佈局簡單: 對於簡單的佈局，使用 inline-block 比 flexbox 更直接</li>
+            <li>元素之間的間隔: inline-block 元素之間會保留空白間隙</li>
+            <li>無需容器: 不像 flex 項目需要一個 flex 容器，inline-block 元素可以直接使用</li>
+            <li>難以做等高、垂直置中等複雜版面</li>
+        </ol>
+    </div>
+</body>
+</html>

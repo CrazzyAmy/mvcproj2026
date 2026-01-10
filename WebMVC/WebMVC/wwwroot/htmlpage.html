@@ -1,0 +1,134 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport"
+          content="width=device-width,initial-scale=1,user-scalable=0" />
+    <title>Hi HTML 5</title>
+    <style>
+        div {
+            margin: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <label>超連結-a標籤</label><br />
+        <a href="https://www.pcschool.com.tw/">巨匠電腦</a>
+        <a href="https://www.pcschool.com.tw/" target="_blank">巨匠電腦</a>
+        <a href="https://www.pcschool.com.tw/" target="_self">巨匠電腦</a>
+        <a href="/HtmlPage1.html" target="_self">SemanticDemo</a>
+        <a href="mailto:contact@contoso.com">contact@contoso.com</a>
+    </div>
+    <div>
+        <label>圖片元素-img標籤</label><br />
+        <img src="imgs/1.jpg" alt="mybook" width="600"><br />
+        <img src="https://www.pcschool.com.tw/activity/111/OMO/images/tirtle_01.png"
+             alt="巨匠電腦">
+    </div>
+    <div>
+        <label>Select :</label><br />
+        <select>
+            <option value="1">Windows Phone</option>
+            <option value="2" selected>iPhone</option>
+            <option value="3">Android</option>
+        </select>
+    </div>
+    <div>
+        <label>Select multiple:</label><br />
+        <select multiple>
+            <option value="1">Windows Phone</option>
+            <option value="2" selected>iPhone</option>
+            <option value="3">Android</option>
+        </select>
+    </div>
+    <div>
+        <label>Select :</label><br />
+        <select>
+            <optgroup label="Phone">
+                <option value="1">Windows Phone</option>
+                <option value="2" selected>iPhone</option>
+                <option value="3">Android</option>
+            </optgroup>
+            <optgroup label="Pad">
+                <option value="4">iPad</option>
+                <option value="5">Android</option>
+            </optgroup>
+        </select>
+    </div>
+
+    <div>
+        <input type="radio" name="gender" value="M">
+        <label>Mr</label>
+        <input type="radio" name="gender" value="F">
+        <label>Mrs.</label>
+    </div>
+
+    <div>
+        <input type="radio" name="gender1" value="M" checked>
+        <label>Mr</label>
+        <input type="radio" name="gender1" value="F">
+        <label>Mrs.</label>
+    </div>
+
+    <div>
+        <input type="checkbox" name="color" value="black"><label>⿊⾊</label><br />
+        <input type="checkbox" name="color" value="red"><label>紅⾊</label><br />
+        <input type="checkbox" name="color" value="green"><label>綠⾊</label><br />
+    </div>
+
+
+    <div>
+        <ul>
+            <li>C#</li>
+            <li>HTML 5</li>
+            <li>ASP.NET MVC</li>
+        </ul>
+    </div>
+    <div>
+        <ol>
+            <li>C#</li>
+            <li>HTML 5</li>
+            <li>ASP.NET MVC</li>
+        </ol>
+    </div>
+    <div>
+        <dl>
+            <dt>.NET</dt>
+                <dd>.NET Core</dd>
+                <dd>.NET Framework</dd>
+            <dt>Web</dt>
+                <dd>HTML 5</dd>
+                <dd>CSS</dd>
+                <dd>JavaScript</dd>
+        </dl>
+    </div>
+
+    <div>
+        <fieldset>
+            <legend>
+                <strong> Your Infomation</strong>
+            </legend>
+            <ol>
+                <li>C#</li>
+                <li>HTML 5</li>
+                <li>ASP.NET MVC</li>
+            </ol>
+            <div>
+                <a href="mailto:service@pcschool.com">service@pcschool.com</a>
+            </div>
+        </fieldset>
+    </div>
+    <div>
+        <form>
+            <fieldset>
+                <legend>Personal:</legend>
+                <input type="email" placeholder="email"><p />
+                <input type="password" placeholder="password"><p />
+                <input type="submit" value="Login">
+            </fieldset>
+        </form>
+    </div>
+    <div style="height:400px"></div>
+</body>
+</html>

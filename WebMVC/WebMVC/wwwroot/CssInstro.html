@@ -1,0 +1,47 @@
+﻿<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Instro</title>
+    <link href="css/projectstyles.css" rel="stylesheet" />
+    <style>
+        div {
+            margin: 20px;
+            background-color:aquamarine;
+        }
+
+        h1 {
+            color: cornflowerblue; /* 會覆寫 projectstyles.css 裡同樣選擇器的 color */
+        }
+    </style>
+</head>
+<body>
+    <div style="background-color:burlywood; color:brown">
+        Cascading Style Sheets（階層式樣式表）負責「長相」：顏色、排版、動畫…<br />
+        <strong>基本語法</strong>
+        <ol>
+            <li>selector：告訴瀏覽器要挑哪些元素，CSS元素選擇器</li>
+            <li>property：想改什麼屬性（如 color、margin）</li>
+            <li>value：改成什麼值（如 red、16px）</li>
+        </ol>
+    </div>
+    <div>
+        <strong>三種引入方式</strong>
+        <ol>
+            <li>Inline：直接定義在HTML元素身上</li>
+            <li>Internal：＜style＞ 區塊</li>
+            <li>External：外部檔案</li>
+
+        </ol>
+        <p>
+            internal 與 external 在「來源」層級相同，效果的覆蓋看的是先後順序<br />
+            ＜style＞
+            區塊通常寫在 ＜head ＞ 最後或頁尾 ＜body ＞ ，方便「蓋掉」之前的外部檔設定。<br />
+        </p>
+        <label><strong>快速記憶口訣：外部先、內部後，行內最大牌；</strong></label>
+        <h1 style="color: red; background-color:white;"> 標題(Inline)</h1>
+        <h1> 標題2(Internal)</h1>
+    </div>
+</body>
+</html>

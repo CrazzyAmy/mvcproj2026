@@ -1,0 +1,92 @@
+﻿<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RWD 資料卡片</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+
+        .card-container {
+            display: flex;
+            flex-wrap: wrap; /* 可換行 */
+            gap: 16px; /* 卡片間距 */
+            /* justify-content: center;*/
+            justify-content: flex-start; /* 確保靠左對齊 */
+        }
+
+        .card {
+           /* flex: 0 0 300px;*/ /* 每張卡片固定寬度 300px，不伸展、不縮小 */
+            flex: 1 1 300px; /* 每張卡片最小寬度 300px，允許元素伸展佔用剩餘空間、允許元素縮小 */
+            max-width: 350px;
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            padding: 16px;
+            transition: transform 0.2s; /*CSS 動畫的寫法,當元素的 transform 屬性改變時，動畫在 0.2 秒內平滑執行完成*/
+        }
+
+            .card:hover {
+                transform: translateY(-4px); /*滑鼠移到 .card 元素時，讓卡片往上移動 4 像素的效果*/
+                border: 1px solid #007BFF; /*滑鼠移到 .card 元素時，給卡片添加藍色邊框*/
+            }
+
+            .card h3 {
+                margin-top: 0;
+                color: #333;
+            }
+
+            .card p {
+                color: #555;
+            }
+
+        /* 小螢幕可略微調整排版 */
+        @media (max-width: 500px) {
+            .card {
+                flex: 1 1 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <h1>資料卡片展示</h1>
+
+    <div class="card-container">
+        <div class="card">
+            <h3>課程一</h3>
+            <p>生成式 AI（Generative AI）是一種能夠根據輸入資料自動產生新內容的人工智慧技術，常見應用包括圖像生成、文字寫作、程式碼撰寫、音樂創作等。它的核心原理是透過大量數據進行訓練，學習其中的語言、圖像或結構模式，進而生成看起來像是人類創作的作品。</p>
+        </div>
+        <div class="card">
+            <h3>課程二</h3>
+            <p>生成式 AI（Generative AI）是一種能夠根據輸入資料自動產生新內容的人工智慧技術，常見應用包括圖像生成、文字寫作、程式碼撰寫、音樂創作等。它的核心原理是透過大量數據進行訓練，學習其中的語言、圖像或結構模式，進而生成看起來像是人類創作的作品。</p>
+        </div>
+        <div class="card">
+            <h3>課程三</h3>
+            <p>生成式 AI（Generative AI）是一種能夠根據輸入資料自動產生新內容的人工智慧技術，常見應用包括圖像生成、文字寫作、程式碼撰寫、音樂創作等。它的核心原理是透過大量數據進行訓練，學習其中的語言、圖像或結構模式，進而生成看起來像是人類創作的作品。</p>
+        </div>
+        <div class="card">
+            <h3>課程四</h3>
+            <p>生成式 AI（Generative AI）是一種能夠根據輸入資料自動產生新內容的人工智慧技術，常見應用包括圖像生成、文字寫作、程式碼撰寫、音樂創作等。它的核心原理是透過大量數據進行訓練，學習其中的語言、圖像或結構模式，進而生成看起來像是人類創作的作品。</p>
+        </div>
+        <div class="card">
+            <h3>課程五</h3>
+            <p>生成式 AI（Generative AI）是一種能夠根據輸入資料自動產生新內容的人工智慧技術，常見應用包括圖像生成、文字寫作、程式碼撰寫、音樂創作等。它的核心原理是透過大量數據進行訓練，學習其中的語言、圖像或結構模式，進而生成看起來像是人類創作的作品。</p>
+        </div>
+        <div class="card">
+            <h3>課程六</h3>
+            <p>生成式 AI（Generative AI）是一種能夠根據輸入資料自動產生新內容的人工智慧技術，常見應用包括圖像生成、文字寫作、程式碼撰寫、音樂創作等。它的核心原理是透過大量數據進行訓練，學習其中的語言、圖像或結構模式，進而生成看起來像是人類創作的作品。</p>
+        </div>
+    </div>
+
+</body>
+</html>

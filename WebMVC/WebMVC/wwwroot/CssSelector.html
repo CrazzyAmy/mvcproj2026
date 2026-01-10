@@ -1,0 +1,167 @@
+﻿<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="utf-8" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Instro</title>
+    <style>
+
+        /*元素選擇器 （Element Selector）*/
+        div {
+            margin: 20px;
+            padding: 5px;
+        }
+
+        p {
+            color: red;
+        }
+
+        /*類別選擇器（Class Selector）*/
+        .card {
+            border: 1px solid #ccc;
+            padding: 16px;
+        }
+
+        .card1 {
+            margin: 10px;
+            padding: 20px;
+        }
+
+        /*ID 選擇器（ID Selector）*/
+        #warningbutton {
+            background-color: red;
+            color: white;
+            height: 40px;
+            width: 120px;
+            margin: 20px;
+            border-radius: 5px;
+        }
+
+        /*群組選擇器（Group Selector）*/
+        /*選取多個元素，樣式相同時可用逗號合併*/
+        h1, h2, h3 {
+            font-family: Arial, sans-serif;
+            color: green;
+        }
+
+        /*後代選擇器（Descendant Selector）*/
+        .descendant-demo span {
+            color: blue;
+            font-weight: bold;
+        }
+
+        /*子代選擇器（Child Selector）*/
+        .child-demo > p {
+            color: purple;
+            font-style: italic;
+        }
+
+        /*相鄰兄弟選擇器（Adjacent Sibling Selector）*/
+        .sibling-demo h4 + p {
+            background-color: yellowgreen;
+            padding: 8px;
+        }
+
+        /*屬性選擇器（Attribute Selector）*/
+        input[type="email"] {
+            border: 2px solid orange;
+            padding: 4px;
+        }
+
+        /*偽類選擇器（Pseudo-class）*/
+        .pseudo-class-demo a:hover {
+            color: red;
+            text-decoration: underline;
+        }
+
+        /*偽元素選擇器（Pseudo-element）*/
+        .pseudo-element-demo p::first-line {
+            font-weight: bold;
+            color: teal;
+        }
+    </style>
+</head>
+<body>
+
+    <!--元素選擇器 （Element Selector）-->
+    <div>
+        <p>這是一段文字</p>
+        <p>這是另一段文字</p>
+    </div>
+
+    <!--類別選擇器（Class Selector）-->
+    <div class="card">我是卡片 1</div>
+    <div class="card card1">我是卡片 2</div>
+
+    <!--ID 選擇器（ID Selector）-->
+    <button id="warningbutton">永久刪除!!</button>
+    <button>另一顆按鈕</button>
+
+    <!--群組選擇器（Group Selector）-->
+    <div class="card">
+        <h1>大標題</h1>
+        <h2>選取多個元素，樣式相同時可用逗號合併</h2>
+        <h3>小標題</h3>
+    </div>
+
+    <!-- 後代選擇器 -->
+    <div class="descendant-demo card">
+        <h3>後代選擇器-選取某個元素內部的特定元素，不限層級</h3>
+        <div>
+            <span>我是 span，位在 div 裡</span>
+        </div>
+    </div>
+    <span>我是 span，位在 div 外</span>
+
+    <!-- 子代選擇器 -->
+    <div class="child-demo card">
+        <h3>子代選擇器-只選取第一層的子元素</h3>
+        <p>我是直接子元素</p>
+        <div>
+            <p>我是巢狀的 p，不會套用樣式</p>
+        </div>
+    </div>
+
+
+    <!-- 相鄰兄弟選擇器 -->
+    <div class="sibling-demo card">
+        <h3>相鄰兄弟選擇器-選取緊接在某元素之後的兄弟元素</h3>
+        <h4>副標題</h4>
+        <p>這段文字會有背景色，因為緊跟在 h4 之後</p>
+        <p>這段不會有背景色，因為不是緊鄰 h4</p>
+    </div>
+
+    <!-- 屬性選擇器 -->
+    <div class="attribute-demo card">
+        <h3>屬性選擇器-根據 HTML 屬性進行選取</h3>
+        <input type="email" placeholder="請輸入 Email">
+        <input type="text" placeholder="普通輸入框">
+    </div>
+
+    <!-- 偽類選擇器 -->
+    <div class="pseudo-class-demo card">
+        <h3>偽類選擇器（hover）- 元素在某些狀態/條件下的樣式，我要用不同樣式。</h3>
+        <ul>
+            <li>  :hover → 滑鼠移上去時</li>
+            <li>  :focus → 輸入框被選到時</li>
+            <li>  :active → 按下去那瞬間</li>
+            <li>  :disabled → 被禁用的表單</li>
+            <li>  :checked → checkbox/radio 被勾選</li>
+        </ul>
+        <a href="#">滑過我會變色</a>
+    </div>
+
+    <!-- 偽元素選擇器 -->
+    <div class="pseudo-element-demo card" style="width:600px">
+        <h3>偽元素選擇器（::first-line）- 元素的虛擬部分（非 DOM 中實際存在的元素）</h3>
+        <ul>
+            <li>  ::before / ::after → 在內容前/後「插入」一個可樣式化的東西</li>
+            <li>  ::first-letter → 第一個字母</li>
+            <li>  ::first-line → 第一行</li>
+            <li>  ::selection → 被反白選取的部分</li>
+        </ul>
+        <p>這段文字的第一行會變色並加粗，看看效果吧！雖然這陣子 Manus 的新聞圍繞在團隊關閉中國大陸業務，不過我發現前幾天 Manus 發表了一篇關於 Context Engineering for AI Agents 的經驗分享文章，內容是 Manus 團隊在建構 AI Agents 過程中對於 Context Engineering 的經驗談，看完後整理重點。</p>
+    </div>
+</body>
+</html>

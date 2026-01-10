@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bootstrap 指南 - 建立現代化網頁設計概念</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --secondary-gradient: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            --dark-gradient: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        .hero-section {
+            background: var(--primary-gradient);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="2" fill="rgba(255,255,255,0.1)"/><circle cx="80" cy="40" r="3" fill="rgba(255,255,255,0.1)"/><circle cx="40" cy="80" r="1" fill="rgba(255,255,255,0.1)"/></svg>');
+            animation: float 20s infinite linear;
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        .card-modern {
+            border: none;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            overflow: hidden;
+        }
+        
+        .card-modern:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+        
+        .section-title {
+            position: relative;
+            padding-bottom: 20px;
+            margin-bottom: 40px;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--secondary-gradient);
+            border-radius: 2px;
+        }
+        
+        .feature-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--primary-gradient);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2rem;
+            margin: 0 auto 20px;
+        }
+        
+        .concept-card {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            border-left: 5px solid;
+            border-image: var(--secondary-gradient) 1;
+        }
+        
+        .navbar-brand {
+            font-weight: 700;
+            font-size: 1.5rem;
+        }
+        
+        .btn-modern {
+            border-radius: 50px;
+            padding: 12px 30px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary-modern {
+            background: var(--primary-gradient);
+            border: none;
+            color: white;
+        }
+        
+        .btn-primary-modern:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+        
+        .timeline {
+            position: relative;
+            padding: 20px 0;
+        }
+        
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: var(--primary-gradient);
+            transform: translateX(-50%);
+        }
+        
+        .timeline-item {
+            position: relative;
+            margin-bottom: 40px;
+        }
+        
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 20px;
+            width: 20px;
+            height: 20px;
+            background: var(--secondary-gradient);
+            border-radius: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .footer-modern {
+            background: var(--dark-gradient);
+            color: white;
+            padding: 60px 0 30px;
+        }
+        
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+        
+        .animate-on-scroll.animated {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- 導航列 -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <i class="fab fa-bootstrap"></i> Bootstrap 指南
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="#intro">介紹</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#concepts">核心概念</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#features">特色功能</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#learning">學習路徑</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 主標題區域 -->
+    <section class="hero-section" id="intro">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <div class="animate-on-scroll">
+                        <h1 class="display-3 fw-bold mb-4">掌握 Bootstrap</h1>
+                        <h2 class="h3 mb-4">建立響應式現代化網頁設計</h2>
+                        <p class="lead mb-5">
+                            Bootstrap 是世界上最受歡迎的前端框架，讓您輕鬆建立美觀、響應式的網頁應用程式。
+                        </p>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="animate-on-scroll">
+                        <div class="text-center">
+                            <i class="fab fa-bootstrap" style="font-size: 15rem; opacity: 0.3;"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Bootstrap 核心概念 -->
+    <section class="py-5" id="concepts">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center mb-5">
+                    <h2 class="display-4 section-title animate-on-scroll">Bootstrap 核心概念</h2>
+                    <p class="lead animate-on-scroll">理解這些基礎概念，讓您能夠有效運用 Bootstrap</p>
+                </div>
+            </div>
+
+            <div class="row g-4">
+                <div class="col-md-6 col-lg-4">
+                    <div class="concept-card animate-on-scroll">
+                        <div class="feature-icon">
+                            <i class="fas fa-th-large"></i>
+                        </div>
+                        <h4 class="text-center mb-3">網格系統 (Grid System)</h4>
+                        <p class="text-muted">
+                            Bootstrap 的網格系統是基於 Flexbox 的強大佈局系統。它使用容器(container)、行(row)和列(column)來建立響應式佈局。
+                            支援 12 欄位系統，可以輕鬆建立複雜的響應式設計。
+                        </p>
+                        <ul class="list-unstyled mt-3">
+                            <li><i class="fas fa-check text-success me-2"></i>響應式斷點設計</li>
+                            <li><i class="fas fa-check text-success me-2"></i>Flexbox 驅動</li>
+                            <li><i class="fas fa-check text-success me-2"></i>12 欄位系統</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-4">
+                    <div class="concept-card animate-on-scroll">
+                        <div class="feature-icon">
+                            <i class="fas fa-mobile-alt"></i>
+                        </div>
+                        <h4 class="text-center mb-3">響應式設計 (Responsive Design)</h4>
+                        <p class="text-muted">
+                            Bootstrap 採用行動優先(Mobile First)的設計方法。透過預定義的斷點和類別，
+                            您可以建立在不同裝置上都能完美顯示的網頁。
+                        </p>
+                        <ul class="list-unstyled mt-3">
+                            <li><i class="fas fa-check text-success me-2"></i>行動優先設計</li>
+                            <li><i class="fas fa-check text-success me-2"></i>預定義斷點</li>
+                            <li><i class="fas fa-check text-success me-2"></i>跨裝置相容</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-4">
+                    <div class="concept-card animate-on-scroll">
+                        <div class="feature-icon">
+                            <i class="fas fa-puzzle-piece"></i>
+                        </div>
+                        <h4 class="text-center mb-3">元件系統 (Component System)</h4>
+                        <p class="text-muted">
+                            Bootstrap 提供豐富的預建元件，包含按鈕、表單、導航列、卡片等。
+                            這些元件都經過精心設計，確保一致性和可用性。
+                        </p>
+                        <ul class="list-unstyled mt-3">
+                            <li><i class="fas fa-check text-success me-2"></i>預建 UI 元件</li>
+                            <li><i class="fas fa-check text-success me-2"></i>一致的設計語言</li>
+                            <li><i class="fas fa-check text-success me-2"></i>易於客製化</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-4">
+                    <div class="concept-card animate-on-scroll">
+                        <div class="feature-icon">
+                            <i class="fas fa-palette"></i>
+                        </div>
+                        <h4 class="text-center mb-3">工具類別 (Utility Classes)</h4>
+                        <p class="text-muted">
+                            Bootstrap 提供大量的工具類別，讓您快速調整間距、顏色、文字對齊、顯示屬性等。
+                            這些類別讓您無需撰寫自訂 CSS 就能完成大部分的樣式調整。
+                        </p>
+                        <ul class="list-unstyled mt-3">
+                            <li><i class="fas fa-check text-success me-2"></i>快速樣式調整</li>
+                            <li><i class="fas fa-check text-success me-2"></i>一致的命名規則</li>
+                            <li><i class="fas fa-check text-success me-2"></i>減少自訂 CSS</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-4">
+                    <div class="concept-card animate-on-scroll">
+                        <div class="feature-icon">
+                            <i class="fas fa-cogs"></i>
+                        </div>
+                        <h4 class="text-center mb-3">客製化 (Customization)</h4>
+                        <p class="text-muted">
+                            Bootstrap 使用 Sass 變數和混合器(mixins)，讓您能夠輕鬆客製化顏色、字型、間距等設計元素。
+                            您可以建立符合品牌形象的獨特設計。
+                        </p>
+                        <ul class="list-unstyled mt-3">
+                            <li><i class="fas fa-check text-success me-2"></i>Sass 變數系統</li>
+                            <li><i class="fas fa-check text-success me-2"></i>主題客製化</li>
+                            <li><i class="fas fa-check text-success me-2"></i>品牌一致性</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-4">
+                    <div class="concept-card animate-on-scroll">
+                        <div class="feature-icon">
+                            <i class="fas fa-bolt"></i>
+                        </div>
+                        <h4 class="text-center mb-3">JavaScript 互動 (JavaScript Interactions)</h4>
+                        <p class="text-muted">
+                            Bootstrap 包含豐富的 JavaScript 外掛程式，提供模態框、下拉選單、輪播圖等互動功能。
+                            這些外掛程式都具有 API 介面，方便程式化控制。
+                        </p>
+                        <ul class="list-unstyled mt-3">
+                            <li><i class="fas fa-check text-success me-2"></i>豐富的互動元件</li>
+                            <li><i class="fas fa-check text-success me-2"></i>JavaScript API</li>
+                            <li><i class="fas fa-check text-success me-2"></i>事件驅動架構</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Bootstrap 特色功能 -->
+    <section class="py-5 bg-light" id="features">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center mb-5">
+                    <h2 class="display-4 section-title animate-on-scroll">為什麼選擇 Bootstrap？</h2>
+                    <p class="lead animate-on-scroll">了解 Bootstrap 的核心優勢與特色</p>
+                </div>
+            </div>
+
+            <div class="row g-4">
+                <div class="col-lg-4 col-md-6">
+                    <div class="card card-modern h-100 animate-on-scroll">
+                        <div class="card-body text-center p-4">
+                            <div class="feature-icon">
+                                <i class="fas fa-tachometer-alt"></i>
+                            </div>
+                            <h5 class="card-title">快速開發</h5>
+                            <p class="card-text">
+                                預建的元件和工具類別讓您能夠快速建立原型和完整的網頁應用程式，
+                                大幅縮短開發時間。
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6">
+                    <div class="card card-modern h-100 animate-on-scroll">
+                        <div class="card-body text-center p-4">
+                            <div class="feature-icon">
+                                <i class="fas fa-users"></i>
+                            </div>
+                            <h5 class="card-title">社群支援</h5>
+                            <p class="card-text">
+                                龐大的開發者社群提供豐富的資源、指南和第三方外掛程式，
+                                讓您在開發過程中不孤單。
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6">
+                    <div class="card card-modern h-100 animate-on-scroll">
+                        <div class="card-body text-center p-4">
+                            <div class="feature-icon">
+                                <i class="fas fa-shield-alt"></i>
+                            </div>
+                            <h5 class="card-title">穩定可靠</h5>
+                            <p class="card-text">
+                                經過數年發展和無數專案驗證，Bootstrap 提供穩定、可靠的基礎，
+                                適合各種規模的專案。
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6">
+                    <div class="card card-modern h-100 animate-on-scroll">
+                        <div class="card-body text-center p-4">
+                            <div class="feature-icon">
+                                <i class="fas fa-universal-access"></i>
+                            </div>
+                            <h5 class="card-title">無障礙設計</h5>
+                            <p class="card-text">
+                                Bootstrap 重視網頁無障礙性，內建的元件都遵循 WAI-ARIA 標準，
+                                確保所有使用者都能順利使用。
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6">
+                    <div class="card card-modern h-100 animate-on-scroll">
+                        <div class="card-body text-center p-4">
+                            <div class="feature-icon">
+                                <i class="fas fa-globe"></i>
+                            </div>
+                            <h5 class="card-title">跨瀏覽器相容</h5>
+                            <p class="card-text">
+                                Bootstrap 確保在所有主流瀏覽器上都能正常運作，
+                                讓您無需擔心相容性問題。
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6">
+                    <div class="card card-modern h-100 animate-on-scroll">
+                        <div class="card-body text-center p-4">
+                            <div class="feature-icon">
+                                <i class="fas fa-book-open"></i>
+                            </div>
+                            <h5 class="card-title">完整文件</h5>
+                            <p class="card-text">
+                                詳細的官方文件和範例，讓您能夠快速上手，
+                                並深入了解每個元件的使用方法。
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 學習路徑 -->
+    <section class="py-5" id="learning">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center mb-5">
+                    <h2 class="display-4 section-title animate-on-scroll">Bootstrap 學習路徑</h2>
+                    <p class="lead animate-on-scroll">按照這個路徑循序漸進地掌握 Bootstrap</p>
+                </div>
+            </div>
+
+            <div class="timeline">
+                <div class="row justify-content-center">
+                    <div class="col-lg-8">
+                        <div class="timeline-item animate-on-scroll">
+                            <div class="card card-modern">
+                                <div class="card-body p-4">
+                                    <h5 class="card-title">
+                                        <i class="fas fa-play-circle text-primary me-2"></i>
+                                        第一階段：基礎入門
+                                    </h5>
+                                    <p class="card-text">
+                                        了解 Bootstrap 的歷史、設計哲學和基本架構。學習如何引入 Bootstrap 到專案中，
+                                        並理解 CSS 類別命名規則和文件結構。
+                                    </p>
+                                    <ul class="list-unstyled">
+                                        <li><i class="fas fa-check-circle text-success me-2"></i>Bootstrap 簡介與安裝</li>
+                                        <li><i class="fas fa-check-circle text-success me-2"></i>CSS 類別命名規則</li>
+                                        <li><i class="fas fa-check-circle text-success me-2"></i>基本 HTML 結構</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="timeline-item animate-on-scroll">
+                            <div class="card card-modern">
+                                <div class="card-body p-4">
+                                    <h5 class="card-title">
+                                        <i class="fas fa-th text-primary me-2"></i>
+                                        第二階段：網格系統掌握
+                                    </h5>
+                                    <p class="card-text">
+                                        深入學習 Bootstrap 的網格系統，包括容器、行、列的概念，以及響應式斷點的使用。
+                                        這是建立響應式佈局的基礎。
+                                    </p>
+                                    <ul class="list-unstyled">
+                                        <li><i class="fas fa-check-circle text-success me-2"></i>容器與行列概念</li>
+                                        <li><i class="fas fa-check-circle text-success me-2"></i>響應式斷點系統</li>
+                                        <li><i class="fas fa-check-circle text-success me-2"></i>網格對齊與排序</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="timeline-item animate-on-scroll">
+                            <div class="card card-modern">
+                                <div class="card-body p-4">
+                                    <h5 class="card-title">
+                                        <i class="fas fa-puzzle-piece text-primary me-2"></i>
+                                        第三階段：元件學習
+                                    </h5>
+                                    <p class="card-text">
+                                        學習 Bootstrap 的各種 UI 元件，包括按鈕、表單、導航列、卡片、模態框等。
+                                        了解每個元件的用途和客製化方法。
+                                    </p>
+                                    <ul class="list-unstyled">
+                                        <li><i class="fas fa-check-circle text-success me-2"></i>基本 UI 元件</li>
+                                        <li><i class="fas fa-check-circle text-success me-2"></i>表單元件</li>
+                                        <li><i class="fas fa-check-circle text-success me-2"></i>導航與選單</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="timeline-item animate-on-scroll">
+                            <div class="card card-modern">
+                                <div class="card-body p-4">
+                                    <h5 class="card-title">
+                                        <i class="fas fa-tools text-primary me-2"></i>
+                                        第四階段：工具類別應用
+                                    </h5>
+                                    <p class="card-text">
+                                        掌握 Bootstrap 的工具類別系統，學習如何使用間距、顏色、文字、顯示等工具類別
+                                        來快速調整元素樣式。
+                                    </p>
+                                    <ul class="list-unstyled">
+                                        <li><i class="fas fa-check-circle text-success me-2"></i>間距工具類別</li>
+                                        <li><i class="fas fa-check-circle text-success me-2"></i>顏色與文字工具</li>
+                                        <li><i class="fas fa-check-circle text-success me-2"></i>Flexbox 工具</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="timeline-item animate-on-scroll">
+                            <div class="card card-modern">
+                                <div class="card-body p-4">
+                                    <h5 class="card-title">
+                                        <i class="fas fa-cogs text-primary me-2"></i>
+                                        第五階段：客製化與進階應用
+                                    </h5>
+                                    <p class="card-text">
+                                        學習如何客製化 Bootstrap 主題，使用 Sass 變數調整設計，以及整合 JavaScript 功能
+                                        來建立完整的互動式網頁應用程式。
+                                    </p>
+                                    <ul class="list-unstyled">
+                                        <li><i class="fas fa-check-circle text-success me-2"></i>Sass 客製化</li>
+                                        <li><i class="fas fa-check-circle text-success me-2"></i>JavaScript 外掛程式</li>
+                                        <li><i class="fas fa-check-circle text-success me-2"></i>建立自訂主題</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 最佳實踐 -->
+    <section class="py-5 bg-light">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center mb-5">
+                    <h2 class="display-4 section-title animate-on-scroll">Bootstrap 最佳實踐</h2>
+                    <p class="lead animate-on-scroll">遵循這些實踐建議，讓您的 Bootstrap 專案更加專業</p>
+                </div>
+            </div>
+
+            <div class="row g-4">
+                <div class="col-lg-6">
+                    <div class="card card-modern h-100 animate-on-scroll">
+                        <div class="card-header bg-primary text-white">
+                            <h5 class="mb-0">
+                                <i class="fas fa-lightbulb me-2"></i>設計原則
+                            </h5>
+                        </div>
+                        <div class="card-body">
+                            <ul class="list-unstyled">
+                                <li class="mb-3">
+                                    <i class="fas fa-mobile-alt text-primary me-2"></i>
+                                    <strong>行動優先設計：</strong>始終從最小螢幕開始設計，再逐步擴展到大螢幕
+                                </li>
+                                <li class="mb-3">
+                                    <i class="fas fa-eye text-primary me-2"></i>
+                                    <strong>一致性：</strong>保持設計元素的一致性，使用統一的間距和顏色系統
+                                </li>
+                                <li class="mb-3">
+                                    <i class="fas fa-users text-primary me-2"></i>
+                                    <strong>使用者體驗：</strong>優先考慮使用者需求，確保介面直觀易用
+                                </li>
+                                <li class="mb-3">
+                                    <i class="fas fa-universal-access text-primary me-2"></i>
+                                    <strong>無障礙設計：</strong>確保所有使用者都能順利使用您的網站
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-6">
+                    <div class="card card-modern h-100 animate-on-scroll">
+                        <div class="card-header bg-success text-white">
+                            <h5 class="mb-0">
+                                <i class="fas fa-code me-2"></i>開發技巧
+                            </h5>
+                        </div>
+                        <div class="card-body">
+                            <ul class="list-unstyled">
+                                <li class="mb-3">
+                                    <i class="fas fa-layer-group text-success me-2"></i>
+                                    <strong>語意化標籤：</strong>使用適當的 HTML 語意化標籤，提升 SEO 和無障礙性
+                                </li>
+                                <li class="mb-3">
+                                    <i class="fas fa-compress-arrows-alt text-success me-2"></i>
+                                    <strong>最小化自訂 CSS：</strong>優先使用 Bootstrap 的工具類別，減少自訂樣式
+                                </li>
+                                <li class="mb-3">
+                                    <i class="fas fa-sync-alt text-success me-2"></i>
+                                    <strong>版本管理：</strong>定期更新 Bootstrap 版本，享受新功能和安全性修復
+                                </li>
+                                <li class="mb-3">
+                                    <i class="fas fa-rocket text-success me-2"></i>
+                                    <strong>效能優化：</strong>只引入需要的元件，減少檔案大小和載入時間
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 頁尾 -->
+    <footer class="footer-modern">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-6">
+                    <p class="text-light mb-0">&copy; 2025 Bootstrap 指南. 版權所有.</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <p class="text-light mb-0">建立於 <i class="fab fa-bootstrap text-info"></i> Bootstrap 5</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- 自訂 JavaScript -->
+    <script>
+        // 滑動動畫
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animated');
+                }
+            });
+        }, observerOptions);
+
+        // 觀察所有需要動畫的元素
+        document.querySelectorAll('.animate-on-scroll').forEach(el => {
+            observer.observe(el);
+        });
+
+        // 平滑滾動
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // 導航列背景變化
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 100) {
+                navbar.classList.add('bg-dark');
+                navbar.style.transition = 'background-color 0.3s ease';
+            } else {
+                navbar.classList.remove('bg-dark');
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,84 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" lang="zh-tw" />
+    <title>HTML5</title>
+    <style>
+        div{
+            margin:10px;
+        }
+        button {
+            margin: 10px;
+            width:100px;
+            height:40px;
+        }
+    </style>
+</head>
+<body>
+    <h1>HTML5 API - Geolocation</h1>
+    <p>使用HTML5的Geolocation API取得目前位置</p>
+    <div>
+        取得目前位置
+        <button id="getlocation" onclick="getlocation()">getlocation</button>
+        <p id="showlocation"></p>
+    </div>
+    <script>
+        /**
+         * 取得使用者目前地理位置的主要函式
+         * 當使用者點擊按鈕時會呼叫此函式
+         */
+        function getlocation() {
+            // 使用HTML5 Geolocation API 取得目前位置
+            // getCurrentPosition() 接受兩個回呼函式(callback)參數：
+            // 第一個參數：成功取得位置時執行的函式
+            // 第二個參數：發生錯誤時執行的函式
+            navigator.geolocation.getCurrentPosition(showlocation, showerror);
+        }
+
+        /**
+         * 當成功取得地理位置時執行的回呼函式
+         * @param {Position} position - 包含位置資訊的物件
+         */
+        function showlocation(position) {
+            // 取得用來顯示結果的HTML元素
+            let p = document.getElementById("showlocation");
+            
+            // 從position物件中取得座標資訊並顯示
+            // position.coords.latitude：緯度
+            // position.coords.longitude：經度
+            p.innerHTML = "緯度:" + position.coords.latitude + " / "
+                + "經度:" + position.coords.longitude;
+        }
+
+        /**
+         * 當取得地理位置發生錯誤時執行的回呼函式
+         * @param {PositionError} error - 包含錯誤資訊的物件
+         */
+        function showerror(error) {
+            // 取得用來顯示錯誤訊息的HTML元素
+            let p = document.getElementById("showlocation");
+            
+            // 根據不同的錯誤代碼顯示對應的中文錯誤訊息
+            switch (error.code) {
+                case error.PERMISSION_DENIED:
+                    // 使用者拒絕分享位置資訊
+                    p.innerHTML = "<b>使用者拒絕</b>"
+                    break;
+                case error.POSITION_UNAVAILABLE:
+                    // 無法取得位置資訊（可能是GPS關閉或訊號不良）
+                    p.innerHTML = "位置目前無法使用"
+                    break;
+                case error.TIMEOUT:
+                    // 請求位置資訊逾時
+                    p.innerHTML = "逾時"
+                    break;
+                case error.UNKNOWN_ERROR:
+                    // 其他未知的錯誤
+                    p.innerHTML = "未知的錯誤"
+                    break;
+            }
+        }
+
+    </script>
+</body>
+</html>

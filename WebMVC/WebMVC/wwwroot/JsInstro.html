@@ -1,0 +1,174 @@
+﻿<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JavaScript 特性展示</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background: #f4f4f4;
+        }
+
+        .card {
+            background: #fff;
+            border-radius: 8px;
+            padding: 16px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+        }
+
+        button {
+            padding: 8px 16px;
+            background-color: #1877f2;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        input {
+            padding: 6px 10px;
+            margin-right: 8px;
+        }
+
+        .output {
+            margin-top: 10px;
+            font-weight: bold;
+        }
+    </style>
+    <script src="js/site.js"></script>
+    <script>
+        ///*時間點太早，找不到button*/
+        // 特性 3：事件導向
+        //const eventBtn = document.getElementById("eventBtn");
+        //console.log(eventBtn);
+
+        //eventBtn.addEventListener("click", function () {
+        //    eventBtn.style.backgroundColor = "#28a745"; // 改成綠色
+        //    eventBtn.textContent = "已點擊！";
+        //});
+    </script>
+</head>
+<body>
+
+    <h1>JavaScript 特性展示</h1>
+    <div class="card">
+        <h3>JavaScript 主要特性</h3>
+        <ol>
+            <li>直譯/即時編譯（JIT），在瀏覽器中執行</li>
+            <li>操作 DOM（Document Object Model）</li>
+            <li>functions可以當變數、參數、回傳值</li>
+            <li>動態型別（Dynamic Typing），同一個變數可以裝不同型別的值，但也因此更容易踩到型別轉換的坑。</li>
+            <li>弱型別（Weak Typing），像 1 + "2" => "12"；"5" - 1 => 4，（加法偏向字串串接，其他運算多半轉成數字）</li>
+
+        </ol>
+    </div>
+    <div class="card">
+        <h3>JavaScript 變數宣告</h3>
+        <ol>
+            <li>let，區塊作用域（block scope），可重新指派</li>
+            <li>const，常數，區塊作用域（block scope）</li>
+            <li>var，不推薦使用，生命週期混亂，不易控制，早期JS的用法</li>
+        </ol>
+    </div>
+    <div class="card">
+        <h3>JavaScript 型別總覽</h3>
+        <ol>
+            <li>string：字串</li>
+            <li>number：數字（包含整數/浮點數，NaN 也是 number）</li>
+            <li>bigint：大整數（123n）</li>
+            <li>boolean：布林</li>
+            <li>undefined：未賦值</li>
+            <li>null：表示「空」</li>
+        </ol>
+    </div>
+    <div class="card">
+        <h3>JavaScript 的比較運算 == vs ===</h3>
+        <ol>
+            <li>===：不做型別轉換（推薦）</li>
+            <li>==：會做型別轉換（容易出意外）</li>
+        </ol>
+    </div>
+
+    <!-- 特性 1：在瀏覽器中執行 -->
+    <div class="card">
+        <h2>✅ 1. 瀏覽器中執行</h2>
+        <h5>JavaScript 是「前端語言」，可以直接在瀏覽器裡跑</h5>
+        <button onclick="alert('Hello, JavaScript!')">點我跳出 alert</button>
+    </div>
+
+    <!-- 特性 2：DOM 操作 -->
+    <div class="card">
+        <h2>✅ 2. 操作 DOM</h2>
+        <h5>JavaScript 可以選取網頁上的元素，並動態修改，DOM（Document Object Model）是 JS 連接 HTML 的橋樑</h5>
+        <p id="domText">這段文字會被改變</p>
+        <button onclick="changeText()">改變文字</button>
+    </div>
+
+    <!-- 特性 3：事件導向 -->
+    <div class="card">
+        <h2>✅ 3. 事件導向</h2>
+        <h5>JavaScript 可以偵測使用者的操作，常見事件：click, mouseover, keydown, submit，事件是前端互動的靈魂</h5>
+        <button id="eventBtn">點我會變色</button>
+    </div>
+
+    <!-- 特性 4：動態型別 -->
+    <div class="card">
+        <h2>✅ 4. 動態型別</h2>
+        <h5>JavaScript 變數不需宣告型別，型別會在執行時期判斷，好處：彈性高、語法簡潔，壞處：容易出錯（目前前端框架多數支援 TypeScript ）</h5>
+        <button onclick="dynamicType()">示範動態變數</button>
+        <div class="output" id="typeOutput"></div>
+    </div>
+
+    <!-- 特性 5：弱型別 -->
+    <div class="card">
+        <h2>✅ 5. 弱型別</h2>
+        <h5>不同型別可以「自動轉換」，但有時會產生意料之外的結果</h5>
+        <input type="text" id="weakInput" placeholder="輸入數字或字串" />
+        <button onclick="weakType()">執行運算</button>
+        <div class="output" id="weakOutput"></div>
+    </div>
+
+    <script>
+
+        //const message = "Hello from inline script!";
+        //alert(message);
+
+        // 特性 2：DOM 操作
+        function changeText() {
+            // document.getElementById("domText").textContent = "文字已經被 JavaScript 改變！";
+
+            let p = document.getElementById("domText");
+            console.log(p);
+            p.textContent = "文字已經被 JavaScript 改變！";
+
+        }
+
+        // 特性 3：事件導向
+        const eventBtn = document.getElementById("eventBtn");
+        eventBtn.addEventListener("click", function () {
+            eventBtn.style.backgroundColor = "#28a745"; // 改成綠色
+            eventBtn.textContent = "已點擊！";
+        });
+
+        // 特性 4：動態型別
+        function dynamicType() {
+            let x = 42; // 整數
+            x = "這是字串"; // 換成字串也 OK
+            document.getElementById("typeOutput").textContent = "變數內容為：" + x;
+        }
+
+        // 特性 5：弱型別
+        function weakType() {
+            const input = document.getElementById("weakInput").value;
+           // const result = parseInt(input) + parseInt(10);
+            const result = input + 10;
+            document.getElementById("weakOutput").textContent = `"${input}" + 10 的結果是：${result}`;
+        }
+    </script>
+
+</body>
+</html>

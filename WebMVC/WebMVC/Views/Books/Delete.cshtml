@@ -1,0 +1,47 @@
+﻿@model BookViewModel;
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h1>Delete</h1>
+
+
+@{
+    if (ViewBag.ErrorMessage != null)
+    {
+        <div class="alert alert-danger" role="alert">
+            @ViewBag.ErrorMessage
+        </div>
+    }
+    else
+    {
+        <form asp-controller="books" asp-action="Delete" method="post">
+            @Html.AntiForgeryToken()
+            <input type="hidden" asp-for="Id" />
+
+            <!-- 不使用 hidden，還是可以　ASP.NET Core MVC 的 Model Binding 機制透過路由，取得id進行刪除
+            <input type="hidden" asp-for="Id" />
+            <input type="hidden" asp-for="Title" />
+            <input type="hidden" asp-for="Price" />
+            -->
+            <div class="form-group">
+                <label asp-for="Title"></label>
+                <label>@Model.Title</label>
+            </div>
+            <div class="form-group">
+                <label asp-for="Price"></label>
+                <label>@Model.Price</label>
+            </div>
+            <input type="submit" value="Delete" class="btn btn-primary" style="margin-top:10px" />
+        </form>
+        <p>
+            ASP.NET Core MVC 的 Model Binding 機制在 POST 時，會根據 表單中送出的欄位（例如 input、
+            select、textarea）的 name 屬性來對應 Model 的屬性名稱，然後重新建立 model 的內容。
+            範例中使用label這只是顯示文字，並不會產生可以被 POST 的欄位，所以在表單送出時，不會被送到 Server 端。
+            因此Model Binding找不到相關資料可以重新Binding到action 的參數model。
+            ✅ 為什麼 Id 在 form submit 之後還會有值？初次進入畫面（GET）/Books/Delete/1，發 Controller 內的 GET Action，
+            送出表單（POST）因為form 是從這個網址/Books/Delete/1來的，所以當按下 submit，就會送出到POST /Books/Delete/1
+            ASP.NET Core 的 Model Binding 就會從 Route /Books/Delete/1 → 綁定到 model.Id = 1
+        </p>
+    }
+}

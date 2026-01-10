@@ -1,0 +1,37 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "E:\\dotNet\\TW202501\\WebMVC\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{529BD74C-1D31-4F86-A41E-5F075B596496}|CourseWeb\\CourseWeb.csproj|e:\\dotnet\\tw202501\\webmvc\\courseweb\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{529BD74C-1D31-4F86-A41E-5F075B596496}|CourseWeb\\CourseWeb.csproj|solutionrelative:courseweb\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "E:\\dotNet\\TW202501\\WebMVC\\CourseWeb\\appsettings.json",
+              "RelativeDocumentMoniker": "CourseWeb\\appsettings.json",
+              "ToolTip": "E:\\dotNet\\TW202501\\WebMVC\\CourseWeb\\appsettings.json",
+              "RelativeToolTip": "CourseWeb\\appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2026-01-10T08:10:11.737Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

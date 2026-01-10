@@ -1,0 +1,166 @@
+﻿<!DOCTYPE html>
+<html lang="zh-tw">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="A brief description of the page for SEO purposes.">
+    <meta name="author" content="Your Name">
+    <meta name="keywords" content="HTML, CSS, JavaScript, tutorial">
+    <title>CSS Sample</title>
+    <style>
+        .container {
+            margin: 20px;
+            padding: 20px;
+            background-color: #f8f9fa;
+            border-radius: 5px;
+        }
+        /* 說明文字 */
+        .note {
+            background-color: #4baff3;
+            border: 1px solid #ffeeba;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 4px;
+            font-size: 20px;
+        }
+
+        /* block 示範 */
+        .block-demo {
+            display: block;
+            width: 200px;
+            height: 50px;
+            background-color: #3498db;
+            color: white;
+            margin: 10px;
+            padding: 10px;
+        }
+
+        /* inline 示範 */
+        .inline-demo {
+            display: inline;
+            background-color: #e74c3c;
+            color: white;
+            padding: 5px;
+            margin: 5px;
+            /* width 和 height 在 inline 元素上無效 */
+        }
+
+        /* inline-block 示範 */
+        .inline-block-demo {
+            display: inline-block;
+            width: 100px;
+            height: 50px;
+            background-color: #2ecc71;
+            color: white;
+            margin: 5px;
+            padding: 10px;
+            text-align: center;
+            line-height: 50px;
+        }
+
+        /* flex 示範 */
+        .flex-container {
+            display: flex;
+            background-color: #f1c40f;
+            padding: 10px;
+            margin: 10px 0;
+        }
+
+        .flex-item {
+            background-color: #34495e;
+            color: white;
+            padding: 10px;
+            margin: 5px;
+            text-align: center;
+        }
+
+        /* none 示範 */
+        .none-demo {
+            display: none;
+           /* display: block;*/
+            background-color: #9b59b6;
+            color: white;
+            padding: 10px;
+        }
+    </style>
+    <link href="css/mystyles.css" rel="stylesheet" />
+</head>
+<body>
+    <h1 style="text-align: center;">HTML CSS display</h1>
+    <span style="font-size:20px;">
+        display 每個HTML元素都有⼀個預設的display值，但不同的元素會有不同的display預設值。⽽⼤部
+        分元素的預設值通常是 block（區塊元素） 或 inline（⾏內元素），因此display將會影響元素在版⾯上所
+        佔⽤的區域，例如div 就是⼀個標準的區塊元素(display預設值為block)。
+    </span>
+
+
+    <div class="container">
+        <h3>1. display: block</h3>
+        <div class="block-demo">這是 block 元素</div>
+        <div class="block-demo">另一個 block 元素</div>
+        <div class="note">
+            block 特性：
+            - 獨占一行
+            - 可以設定寬高
+            - 可以設定 margin 和 padding
+        </div>
+    </div>
+
+    <div class="container">
+        <h3>2. display: inline</h3>
+        <span class="inline-demo">這是</span>
+        <span class="inline-demo">inline</span>
+        <span class="inline-demo">元素</span>
+        <div class="note">
+            inline 特性：
+            - 不會獨占一行
+            - 無法設定寬高
+            - 只能設定水平方向的 margin 和 padding
+        </div>
+    </div>
+
+    <div class="container">
+        <h3>3. display: inline-block</h3>
+        <div class="inline-block-demo">元素 1</div>
+        <div class="inline-block-demo">元素 2</div>
+        <div class="inline-block-demo">元素 3</div>
+        <div class="note">
+            inline-block 特性：
+            - 不會獨占一行
+            - 可以設定寬高
+            - 可以設定所有方向的 margin 和 padding
+        </div>
+    </div>
+   
+    <div class="container">
+        <h3>4. display: flex</h3>
+        <div class="flex-container">
+            <div class="flex-item">Flex 項目 1</div>
+            <div class="flex-item">Flex 項目 2</div>
+            <div class="flex-item">Flex 項目 3</div>
+        </div>
+        <div class="note">
+            flex 特性：
+            <ol>
+                <li>涉及容器與子元素</li>
+                <li>用於建立彈性布局</li>
+                <li>可以輕鬆控制子元素的排列方式</li>
+                <li>常用於響應式設計</li>
+            </ol>
+        </div>
+    </div>
+
+    <div class="container">
+        <h3>5. display: none</h3>
+        <div id="none-example" class="none-demo">我不見了，我又跳進來了</div>
+        <div class="note">
+            none 特性：
+            <ol>
+                <li>完全隱藏元素</li>
+                <li>不佔用任何空間</li>
+                <li>常用於動態顯示/隱藏內容</li>
+            </ol>
+        </div>
+    </div>
+</body>
+</html>

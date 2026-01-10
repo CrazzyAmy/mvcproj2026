@@ -1,0 +1,527 @@
+﻿<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML 5 File API</title>
+    <style>
+        body {
+            font-family: 'Microsoft JhengHei', Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            border-bottom: 2px solid #4CAF50;
+            padding-bottom: 20px;
+        }
+
+            .header h1 {
+                color: #2c3e50;
+                margin: 0;
+                font-size: 2.5em;
+            }
+
+            .header p {
+                color: #7f8c8d;
+                font-size: 1.1em;
+                margin: 10px 0 0 0;
+            }
+
+        .tutorial-section {
+            margin-bottom: 30px;
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 8px;
+            border-left: 4px solid #4CAF50;
+        }
+
+            .tutorial-section h2 {
+                color: #2c3e50;
+                margin-top: 0;
+                margin-bottom: 20px;
+                font-size: 1.4em;
+                display: flex;
+                align-items: center;
+            }
+
+                .tutorial-section h2::before {
+                    content: "📚";
+                    margin-right: 10px;
+                    font-size: 1.2em;
+                }
+
+        .method-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .method-card {
+            background: white;
+            padding: 15px;
+            border-radius: 6px;
+            border: 1px solid #e0e0e0;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+            .method-card:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            }
+
+        .method-name {
+            font-weight: bold;
+            color: #e74c3c;
+            font-family: 'Consolas', monospace;
+            font-size: 0.95em;
+            margin-bottom: 8px;
+        }
+
+        .method-desc {
+            color: #555;
+            font-size: 0.9em;
+        }
+
+        .event-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 12px;
+        }
+
+        .event-card {
+            background: white;
+            padding: 12px;
+            border-radius: 6px;
+            border: 1px solid #e0e0e0;
+            text-align: center;
+        }
+
+        .event-name {
+            font-weight: bold;
+            color: #3498db;
+            font-family: 'Consolas', monospace;
+            font-size: 0.9em;
+            margin-bottom: 5px;
+        }
+
+        .event-desc {
+            color: #666;
+            font-size: 0.85em;
+        }
+
+        .demo-section {
+            background: white;
+            margin: 20px 0;
+            padding: 25px;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+        }
+
+        .demo-title {
+            color: #2c3e50;
+            margin-bottom: 15px;
+            font-size: 1.2em;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+        }
+
+            .demo-title::before {
+                content: "🔧";
+                margin-right: 8px;
+            }
+
+        .file-input {
+            padding: 8px;
+            border: 2px dashed #4CAF50;
+            border-radius: 5px;
+            background: #f9f9f9;
+            margin: 10px 0;
+            display: inline-block;
+        }
+
+        .result-area {
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 4px;
+            padding: 15px;
+            margin: 10px 0;
+            min-height: 50px;
+            font-family: 'Consolas', monospace;
+            font-size: 0.9em;
+        }
+
+        .feature-badge {
+            background: #4CAF50;
+            color: white;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 0.8em;
+            margin-left: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>HTML5 File API 教學與展示</h1>
+            <p>學習如何使用 HTML5 FileReader API 處理檔案讀取、預覽和上傳</p>
+        </div>
+
+        <div class="tutorial-section">
+            <h2>FileReader 讀取方法</h2>
+            <div class="method-grid">
+                <div class="method-card">
+                    <div class="method-name">readAsText(file, [encoding])</div>
+                    <div class="method-desc">以文字格式讀取檔案內容，可指定編碼（如 UTF-8）。適用於文字檔案、JSON、CSV 等。</div>
+                </div>
+                <div class="method-card">
+                    <div class="method-name">readAsDataURL(file)</div>
+                    <div class="method-desc">將檔案轉換為 Base64 編碼的 Data URL。常用於圖片預覽和小檔案嵌入。</div>
+                </div>
+                <div class="method-card">
+                    <div class="method-name">readAsBinaryString(file)</div>
+                    <div class="method-desc">以二進制字串格式讀取檔案。<span class="feature-badge">已棄用</span></div>
+                </div>
+                <div class="method-card">
+                    <div class="method-name">readAsArrayBuffer(file)</div>
+                    <div class="method-desc">讀取為 ArrayBuffer 格式，適用於二進制檔案處理和檔案上傳。</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="tutorial-section">
+            <h2>FileReader 事件處理</h2>
+            <div class="event-grid">
+                <div class="event-card">
+                    <div class="event-name">onload</div>
+                    <div class="event-desc">讀取操作完成時觸發</div>
+                </div>
+                <div class="event-card">
+                    <div class="event-name">onerror</div>
+                    <div class="event-desc">讀取操作出錯時觸發</div>
+                </div>
+                <div class="event-card">
+                    <div class="event-name">onprogress</div>
+                    <div class="event-desc">讀取過程中定期觸發</div>
+                </div>
+                <div class="event-card">
+                    <div class="event-name">onloadstart</div>
+                    <div class="event-desc">開始讀取時觸發</div>
+                </div>
+                <div class="event-card">
+                    <div class="event-name">onloadend</div>
+                    <div class="event-desc">讀取結束時觸發</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <div class="demo-title">📄 單一文字檔案讀取</div>
+            <p>選擇一個文字檔案（.txt, .json, .csv 等）來讀取其內容：</p>
+            <input type="file" id="fileinput" class="file-input" onchange="handleFiles()" accept="text/*">
+            <div id="filecontent" class="result-area">請選擇一個文字檔案...</div>
+        </div>
+
+        <div class="demo-section">
+            <div class="demo-title">📁 多檔案選擇與資訊顯示</div>
+            <p>一次選擇多個檔案，查看檔案詳細資訊：</p>
+            <input type="file" id="myfiles" name="files[]" class="file-input" multiple onchange="handleFileSelect()">
+            <div id="showlist" class="result-area">請選擇檔案...</div>
+        </div>
+
+        <div class="demo-section">
+            <div class="demo-title">🖼️ 圖片預覽功能</div>
+            <p>選擇圖片檔案進行即時預覽：</p>
+            <input type="file" id="myimg" class="file-input" onchange="imgPreview()" accept="image/*"><br />
+            <div style="margin-top: 15px; text-align: center; border: 2px dashed #ddd; padding: 20px; border-radius: 8px;">
+                <img id="imgview" style="max-width: 300px; max-height: 300px; border-radius: 5px;" alt="圖片預覽區域" />
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <div class="demo-title">☁️ 檔案上傳功能</div>
+            <p>選擇檔案並模擬上傳到伺服器：</p>
+            <input type="file" id="fileupload" class="file-input" onchange="fileupload()">
+            <div style="margin-top: 10px; color: #666; font-size: 0.9em;">
+                💡 提示：這是示範功能，實際上傳需要配置伺服器端點
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+        /**
+         * 處理單一檔案讀取的函式
+         * 使用 FileReader API 讀取文字檔案內容
+         */
+        function handleFiles() {
+            // 使用 const 宣告不會重新賦值的變數
+            const fileinput = document.getElementById('fileinput');
+            const filecontent = document.getElementById('filecontent');
+
+            // 檢查是否有選擇檔案
+            if (!fileinput.files || fileinput.files.length === 0) {
+                filecontent.textContent = "請選擇一個檔案";
+                return;
+            }
+
+            const file = fileinput.files[0]; //file 元件預設單選
+            const filetype = /text.*/;
+
+            // 檔案大小限制 (5MB)
+            const maxSize = 5 * 1024 * 1024;
+            if (file.size > maxSize) {
+                filecontent.textContent = "檔案太大，請選擇小於 5MB 的檔案";
+                return;
+            }
+
+            console.log('檔案類型:', file.type);
+
+            // 檢查檔案類型是否為文字檔
+            if (file.type.match(filetype)) {
+                const reader = new FileReader(); // HTML5 FileReader API
+
+                // 檔案讀取成功時的事件處理
+                reader.onload = function (e) {
+                    console.log('檔案內容:', e.target.result);
+                    // 使用 textContent 避免 XSS 攻擊
+                    filecontent.textContent = reader.result;
+                };
+
+                // 檔案讀取錯誤時的事件處理
+                reader.onerror = function () {
+                    filecontent.textContent = "檔案讀取失敗，請重試";
+                };
+
+                // 顯示載入狀態
+                filecontent.textContent = "正在讀取檔案...";
+
+                // 以文字格式讀取檔案內容
+                reader.readAsText(file);
+            } else {
+                filecontent.textContent = "不支援的檔案類型！請選擇文字檔案";
+            }
+        }
+
+        /**
+         * 處理多檔案選擇的函式
+         * 顯示選中的多個檔案資訊列表
+         */
+        function handleFileSelect() {
+            const myfiles = document.getElementById('myfiles');
+            const showlist = document.getElementById('showlist');
+
+            // 檢查是否有選擇檔案
+            if (!myfiles.files || myfiles.files.length === 0) {
+                showlist.textContent = "請選擇檔案";
+                return;
+            }
+
+            // 清空之前的內容
+            showlist.innerHTML = "";
+
+            // 使用傳統 for 迴圈建立檔案列表 HTML
+            let fileInfoList = '';
+            for (let i = 0; i < myfiles.files.length; i++) {
+                const file = myfiles.files[i];
+                console.log('檔案資訊:', file);
+
+                const fileName = file.name;
+                const fileSize = formatFileSize(file.size);
+                const modifiedDate = file.lastModified
+                    ? new Date(file.lastModified).toLocaleDateString('zh-TW')
+                    : '未知';
+                const fileType = file.type || '未知類型';
+
+                fileInfoList += `<li style="margin-bottom: 5px;">
+                    <strong>${fileName}</strong> - ${fileSize}, 修改日期: ${modifiedDate} (${fileType})
+                </li>`;
+            }
+
+            // 一次性設定 HTML 內容
+            showlist.innerHTML = `<ul style="list-style-type: disc; padding-left: 20px;">${fileInfoList}</ul>`;
+        }
+
+        /**
+        * 格式化檔案大小顯示
+        * @param {number} bytes - 檔案大小（位元組）
+        * @returns {string} 格式化後的檔案大小
+        */
+        function formatFileSize(bytes) {
+            if (bytes === 0) return '0 Bytes';
+            const k = 1024;
+            const sizes = ['Bytes', 'KB', 'MB', 'GB'];
+            const i = Math.floor(Math.log(bytes) / Math.log(k));
+            return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+        }
+
+
+        /**
+       * 圖片預覽函式
+       * 使用 FileReader 將圖片轉換為 Data URL 並顯示預覽
+       */
+        function imgPreview() {
+            const input = document.getElementById("myimg");
+            const imgview = document.getElementById("imgview");
+
+            // 檢查是否有選擇檔案
+            if (!input.files || input.files.length === 0) {
+                imgview.src = "";
+                imgview.alt = "請選擇圖片檔案";
+                return;
+            }
+
+            const file = input.files[0];
+
+            // 檢查檔案類型是否為圖片
+            if (!file.type.startsWith('image/')) {
+                alert('請選擇圖片檔案！');
+                imgview.src = "";
+                return;
+            }
+
+            // 檔案大小限制 (10MB)
+            const maxSize = 10 * 1024 * 1024;
+            if (file.size > maxSize) {
+                alert('圖片檔案太大，請選擇小於 10MB 的圖片');
+                return;
+            }
+
+            const reader = new FileReader();
+
+            // 讀取完成時的事件處理
+            // readAsDataURL 會將檔案轉換為 base64 編碼的 Data URL
+            // 格式：data:[mediatype][;base64],<data>
+            reader.onload = function () {
+                imgview.src = this.result;
+                imgview.alt = file.name;
+                console.log('圖片 Data URL:', this.result);
+            };
+
+            // 讀取錯誤處理
+            reader.onerror = function () {
+                alert('圖片讀取失敗，請重試');
+                imgview.src = "";
+            };
+
+            // 開始讀取檔案為 Data URL
+            reader.readAsDataURL(file);
+        }
+
+
+        /**
+        * 檔案上傳函式
+        * 將檔案讀取為 ArrayBuffer 並上傳到伺服器
+        */
+        function fileupload() {
+            const input = document.getElementById("fileupload");
+
+            // 檢查是否有選擇檔案
+            if (!input.files || input.files.length === 0) {
+                alert('請選擇要上傳的檔案');
+                return;
+            }
+
+            const file = input.files[0];
+
+            // 檔案大小限制 (50MB)
+            const maxSize = 50 * 1024 * 1024;
+            if (file.size > maxSize) {
+                alert('檔案太大，請選擇小於 50MB 的檔案');
+                return;
+            }
+
+            const reader = new FileReader();
+
+            // 讀取完成時的事件處理
+            reader.onload = function () {
+                const binary = this.result; // ArrayBuffer 格式的二進制資料
+                console.log('檔案 ArrayBuffer:', binary);
+                uploadToServer(binary, file.name, file.type);
+            };
+
+            // 讀取錯誤處理
+            reader.onerror = function () {
+                alert('檔案讀取失敗，請重試');
+            };
+
+            // 顯示讀取進度
+            reader.onprogress = function (e) {
+                if (e.lengthComputable) {
+                    const percentLoaded = Math.round((e.loaded / e.total) * 100);
+                    console.log('讀取進度:', percentLoaded + '%');
+                }
+            };
+
+            // 將檔案讀取為 ArrayBuffer（適合二進制檔案處理）
+            reader.readAsArrayBuffer(file);
+        }
+
+        /**
+         * 上傳檔案到伺服器的函式
+         * @param {ArrayBuffer} binary - 檔案的二進制資料
+         * @param {string} fileName - 檔案名稱
+         * @param {string} fileType - 檔案類型
+         */
+        function uploadToServer(binary, fileName, fileType) {
+            // 建立 XMLHttpRequest 物件進行 AJAX 上傳
+            const xhr = new XMLHttpRequest();
+
+            // 設定上傳端點 URL（需要替換為實際的伺服器端點）
+            const uploadUrl = "/api/upload"; // 請替換為您的實際上傳 URL
+            xhr.open("POST", uploadUrl);
+
+            // 設定請求標頭
+            xhr.setRequestHeader('Content-Type', 'application/octet-stream'); // 二進制檔案類型
+            xhr.setRequestHeader('X-File-Name', encodeURIComponent(fileName)); // 檔案名稱
+            xhr.setRequestHeader('X-File-Type', fileType); // 檔案類型
+
+            // 上傳完成時的事件處理
+            xhr.onload = function () {
+                if (xhr.status === 200) {
+                    console.log('上傳成功');
+                    alert('檔案上傳成功！');
+                } else {
+                    console.error('上傳失敗，狀態碼:', xhr.status);
+                    alert('檔案上傳失敗，請重試');
+                }
+            };
+
+            // 上傳錯誤處理
+            xhr.onerror = function () {
+                console.error('上傳發生錯誤');
+                alert('網路錯誤，上傳失敗');
+            };
+
+            // 上傳進度監控
+            xhr.upload.onprogress = function (e) {
+                if (e.lengthComputable) {
+                    const percentComplete = Math.round((e.loaded / e.total) * 100);
+                    console.log('上傳進度:', percentComplete + '%');
+                    // 這裡可以更新進度條 UI
+                }
+            };
+
+            // 開始上傳二進制資料
+            xhr.send(binary);
+        }
+
+    </script>
+</body>
+</html>

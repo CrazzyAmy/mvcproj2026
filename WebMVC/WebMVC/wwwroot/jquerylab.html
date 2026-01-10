@@ -1,0 +1,556 @@
+﻿<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jQuery 教學實驗室</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <!--<script src="js/jquery-3.7.1.min.js"></script>-->
+
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+            padding: 30px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #667eea;
+            margin-bottom: 10px;
+            font-size: 2.5em;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 1.1em;
+        }
+
+        .section {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-left: 4px solid #667eea;
+        }
+
+        .section h2 {
+            color: #667eea;
+            margin-bottom: 15px;
+            font-size: 1.5em;
+        }
+
+        .section-desc {
+            color: #666;
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+
+        button {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin: 5px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 14px;
+        }
+
+        button:hover {
+            background: #5568d3;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+        }
+
+        .highlight {
+            background-color: #ff6b6b;
+            color: black;
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        .active {
+            color: #ff6b6b;
+            font-weight: bold;
+        }
+
+        #hoverBox {
+            width: 100%;
+            max-width: 300px;
+            height: 100px;
+            background: #e9ecef;
+            text-align: center;
+            line-height: 100px;
+            margin: 10px 0;
+            border-radius: 8px;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        input[type="text"],
+        select {
+            padding: 10px;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 14px;
+            width: 100%;
+            max-width: 300px;
+            margin: 10px 0;
+            transition: border-color 0.3s;
+        }
+
+        input[type="text"]:focus,
+        select:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .menu {
+            list-style: none;
+            padding: 10px;
+            background: white;
+            border-radius: 8px;
+            border: 2px solid #667eea;
+        }
+
+        .menu li {
+            padding: 10px;
+            margin: 5px 0;
+            background: #f8f9fa;
+            border-radius: 5px;
+            transition: all 0.3s;
+        }
+
+        .menu li:hover {
+            background: #667eea;
+            color: white;
+            transform: translateX(10px);
+        }
+
+        .result {
+            background: #d4edda;
+            border: 1px solid #c3e6cb;
+            color: #155724;
+            padding: 10px;
+            border-radius: 5px;
+            margin: 10px 0;
+        }
+
+        .demo-box {
+            padding: 15px;
+            background: white;
+            border-radius: 8px;
+            margin: 10px 0;
+        }
+
+        .code-example {
+            background: #2d2d2d;
+            color: #f8f8f2;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+            font-family: 'Courier New', monospace;
+            font-size: 13px;
+            margin: 10px 0;
+        }
+
+        .animation-demo {
+            width: 100px;
+            height: 100px;
+            background: #667eea;
+            margin: 10px 0;
+            border-radius: 10px;
+        }
+
+        .fade-box {
+            background: #ffeaa7;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 10px 0;
+            text-align: center;
+        }
+
+        .slide-box {
+            background: #74b9ff;
+            color: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 10px 0;
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>🎯 jQuery 教學實驗室</h1>
+        <p class="subtitle">互動式學習 jQuery 的核心功能</p>
+
+        <!-- jQuery 簡介 -->
+        <div class="section"
+            style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border: none;">
+            <h2 style="color: white;">📖 什麼是 jQuery？</h2>
+            <p class="section-desc" style="color: #f0f0f0;">
+                <strong>jQuery</strong> 是一個快速、輕量且功能豐富的 JavaScript 函式庫，由 John Resig 於 2006 年建立。
+                它的設計理念是 <em>"Write Less, Do More"（寫更少，做更多）</em>，大幅簡化了 JavaScript 程式設計。
+            </p>
+
+            <div style="background: rgba(255,255,255,0.1); padding: 15px; border-radius: 8px; margin: 15px 0;">
+                <h3 style="color: #ffd93d; margin-bottom: 10px;">✨ jQuery 的核心優勢：</h3>
+                <ul style="line-height: 2; list-style-position: inside;">
+                    <li><strong>簡潔的語法：</strong>使用 $ 符號和 CSS 選擇器，讓 DOM 操作變得直觀易懂</li>
+                    <li><strong>跨瀏覽器相容：</strong>自動處理不同瀏覽器的差異，無需擔心相容性問題</li>
+                    <li><strong>強大的 DOM 操作：</strong>輕鬆選取、修改、新增或刪除 HTML 元素</li>
+                    <li><strong>豐富的事件處理：</strong>簡化使用者互動事件的綁定與管理</li>
+                    <li><strong>動畫效果：</strong>內建淡入淡出、滑動等動畫效果</li>
+                    <li><strong>AJAX 支援：</strong>簡化非同步 HTTP 請求的撰寫</li>
+                    <li><strong>插件生態系：</strong>擁有豐富的第三方插件可擴充功能</li>
+                </ul>
+            </div>
+
+            <div style="background: rgba(255,255,255,0.1); padding: 15px; border-radius: 8px; margin: 15px 0;">
+                <h3 style="color: #ffd93d; margin-bottom: 10px;">🎯 為什麼要學習 jQuery？</h3>
+                <p style="color: #f0f0f0; line-height: 1.8;">
+                    雖然現代前端開發有 React、Vue 等框架，但 jQuery 仍然廣泛應用於：
+                </p>
+                <ul style="line-height: 2; list-style-position: inside; color: #f0f0f0;">
+                    <li>快速開發小型專案或原型</li>
+                    <li>維護既有的舊專案（許多網站仍在使用）</li>
+                    <li>學習 JavaScript DOM 操作的基礎概念</li>
+                    <li>需要輕量級解決方案的場景</li>
+                </ul>
+            </div>
+
+            <div style="background: rgba(255,255,255,0.1); padding: 15px; border-radius: 8px;">
+                <h3 style="color: #ffd93d; margin-bottom: 10px;">💡 jQuery vs 原生 JavaScript 比較</h3>
+                <div class="code-example" style="margin: 10px 0;">
+                    // 原生 JavaScript<br>
+                    document.getElementById("demo").innerHTML = "Hello";<br>
+                    document.querySelectorAll(".item").forEach(el => el.style.color = "red");<br>
+                    <br>
+                    // jQuery - 更簡潔！<br>
+                    $("#demo").html("Hello");<br>
+                    $(".item").css("color", "red");
+                </div>
+            </div>
+        </div>
+
+        <!-- 選擇器示範 -->
+        <div class="section">
+            <h2>1️⃣ jQuery 選擇器 (Selectors)</h2>
+            <p class="section-desc">jQuery 使用 CSS 選擇器來選取 HTML 元素，讓操作 DOM 變得簡單直觀。</p>
+            <div class="demo-box">
+                <p class="desc">這是一段文字</p>
+                <ul class="menu">
+                    <li>首頁</li>
+                    <li>關於</li>
+                    <li>聯絡</li>
+                </ul>
+                <button onclick="jQueryLab()">新增選單項目</button>
+                <div class="code-example">$(".menu").append("&lt;li&gt;新增項目&lt;/li&gt;");</div>
+            </div>
+        </div>
+
+        <!-- CSS 操作 -->
+        <div class="section">
+            <h2>2️⃣ CSS 類別操作</h2>
+            <p class="section-desc"
+                style="background: #fff3cd; padding: 15px; border-radius: 8px; border-left: 4px solid #ffc107;">
+                <strong>🔍 addClass vs toggleClass 的差異：</strong><br><br>
+                <strong>addClass</strong> - 只會「新增」CSS 類別。如果元素已經有該類別，不會有任何變化。適合用在確定要加上某個樣式的情況。<br><br>
+                <strong>toggleClass</strong> - 「切換」CSS 類別。如果元素沒有該類別就新增它，如果已有該類別就移除它。適合需要開關效果的場景（像燈的開關）。<br><br>
+                💡 <em>試試看下方的按鈕：第一個按鈕用 addClass 加上紅色背景，第二個按鈕用 removeClass 移除，第三個按鈕用 toggleClass
+                    切換紅色文字效果（點一次加上，再點一次移除）。</em>
+            </p>
+            <h3 id="title">Hello jQuery!</h3>
+            <p class="section-desc">動態新增、移除或切換 CSS 類別，讓網頁更具互動性。</p>
+            <div class="demo-box">
+                <button onclick="jQueryLab2()">addClass (新增類別)</button>
+                <button onclick="jQueryLab3()">removeClass (移除類別)</button>
+                <button onclick="jQueryLab4()">toggleClass (切換類別)</button>
+                <div class="code-example">
+                    $("#title").addClass("highlight");<br>
+                    $("#title").removeClass("highlight");<br>
+                    $("#title").toggleClass("active");
+                </div>
+            </div>
+        </div>
+
+        <!-- 事件處理 -->
+        <div class="section">
+            <h2>3️⃣ 事件處理 (Event Handling)</h2>
+            <p class="section-desc">jQuery 提供簡潔的事件處理方式，讓你輕鬆回應使用者互動。</p>
+            <div class="demo-box">
+                <div id="hoverBox">滑鼠移過來看看</div>
+                <input type="text" id="nameInput" placeholder="請輸入名字">
+                <p id="previewName" class="result">你輸入的名字會出現在這裡</p>
+                <div class="code-example">
+                    $("#hoverBox").hover(function() {<br>
+                    &nbsp;&nbsp;$(this).css("background", "lightgreen");<br>
+                    });
+                </div>
+            </div>
+        </div>
+
+        <!-- 表單處理 -->
+        <div class="section">
+            <h2>4️⃣ 表單互動</h2>
+            <p class="section-desc">處理下拉選單變更和表單送出事件。</p>
+            <div class="demo-box">
+                <select id="colorSelect">
+                    <option value="">-- 請選擇顏色 --</option>
+                    <option value="red">紅色</option>
+                    <option value="blue">藍色</option>
+                    <option value="green">綠色</option>
+                </select>
+                <p id="selectedColor" class="result">目前選擇：無</p>
+
+                <form id="loginForm">
+                    <input type="text" id="username" placeholder="使用者名稱">
+                    <button type="submit">送出</button>
+                </form>
+                <p id="formMsg" class="result">尚未送出</p>
+            </div>
+        </div>
+
+        <!-- 動畫效果 -->
+        <div class="section">
+            <h2>5️⃣ 動畫效果 (Animation)</h2>
+            <p class="section-desc">jQuery 內建多種動畫效果，讓你的網頁更生動。</p>
+            <div class="demo-box">
+                <button onclick="fadeDemo()">淡入淡出 (Fade)</button>
+                <button onclick="slideDemo()">滑動效果 (Slide)</button>
+                <button onclick="animateDemo()">自訂動畫 (Animate)</button>
+
+                <div class="fade-box" id="fadeBox">我會淡入淡出！</div>
+                <div class="slide-box" id="slideBox">我會滑動展開/收合！</div>
+                <div class="animation-demo" id="animBox"></div>
+
+                <div class="code-example">
+                    $("#fadeBox").fadeToggle(500);<br>
+                    $("#slideBox").slideToggle(500);<br>
+                    $("#animBox").animate({width: "200px"}, 500);
+                </div>
+            </div>
+        </div>
+
+        <!-- AJAX 示範 -->
+        <div class="section">
+            <h2>6️⃣ AJAX 非同步請求</h2>
+            <p class="section-desc">使用 jQuery 的 AJAX 方法與伺服器進行非同步通訊。</p>
+            <div class="demo-box">
+                <button onclick="ajaxDemo()">載入資料</button>
+                <div id="ajaxResult" class="result">點擊按鈕載入資料...</div>
+                <div class="code-example">
+                    $.ajax({<br>
+                    &nbsp;&nbsp;url: "api/data",<br>
+                    &nbsp;&nbsp;method: "GET",<br>
+                    &nbsp;&nbsp;success: function(data) {<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;console.log(data);<br>
+                    &nbsp;&nbsp;}<br>
+                    });
+                </div>
+            </div>
+        </div>
+
+        <!-- 鏈式呼叫 -->
+        <div class="section">
+            <h2>7️⃣ 鏈式呼叫 (Method Chaining)</h2>
+            <p class="section-desc">jQuery 支援鏈式呼叫，讓程式碼更簡潔優雅。</p>
+            <div class="demo-box">
+                <button onclick="chainDemo()">執行鏈式操作</button>
+                <p id="chainText">我會被改變樣式</p>
+                <div class="code-example">
+                    $("#chainText")<br>
+                    &nbsp;&nbsp;.css("color", "blue")<br>
+                    &nbsp;&nbsp;.slideUp(500)<br>
+                    &nbsp;&nbsp;.slideDown(500)<br>
+                    &nbsp;&nbsp;.fadeOut(500)<br>
+                    &nbsp;&nbsp;.fadeIn(500);
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 1. 選擇器與 DOM 操作
+        function jQueryLab() {
+            $(".menu").append("<li>新增項目</li>");
+        }
+
+        // 2. CSS 類別操作
+        function jQueryLab2() {
+            $("#title").addClass("highlight");
+        }
+
+        function jQueryLab3() {
+            $("#title").removeClass("highlight");
+        }
+
+        function jQueryLab4() {
+            $("#title").toggleClass("active");
+        }
+
+        // 3. 事件處理 - Hover
+        $("#hoverBox").hover(
+            function () {
+                $(this).css("background", "lightgreen");
+                $(this).text("太棒了！");
+            },
+            function () {
+                $(this).css("background", "#e9ecef");
+                $(this).text("滑鼠移過來看看");
+            }
+        );
+
+        // 4. 即時輸入監聽
+        $("#nameInput").on("input", function () {
+            let value = $(this).val();
+            if (value) {
+                $("#previewName").text("你輸入的是：" + value);
+            } else {
+                $("#previewName").text("你輸入的名字會出現在這裡");
+            }
+        });
+
+        // 5. 下拉選單變更事件
+        $("#colorSelect").change(function () {
+            let color = $(this).val();
+            if (color) {
+                $("#selectedColor").text("目前選擇：" + color);
+                $("#selectedColor").css("color", getColorCode(color));
+            } else {
+                $("#selectedColor").text("目前選擇：無");
+                $("#selectedColor").css("color", "");
+            }
+        });
+
+        function getColorCode(colorName) {
+            const colors = {
+                "紅色": "#ff6b6b",
+                "藍色": "#4dabf7",
+                "綠色": "#51cf66"
+            };
+            return colors[colorName] || "#000";
+        }
+
+        // 6. 表單送出事件
+        $("#loginForm").submit(function (e) {
+            e.preventDefault(); // 防止表單實際送出
+            let name = $("#username").val();
+            if (name === "") {
+                $("#formMsg").text("⚠️ 請輸入使用者名稱！");
+                $("#formMsg").css("background", "#fff3cd");
+            } else {
+                $("#formMsg").text("✅ 歡迎你，" + name + "！");
+                $("#formMsg").css("background", "#d4edda");
+            }
+        });
+
+        // 7. 動畫效果 - 淡入淡出
+        function fadeDemo() {
+            $("#fadeBox").fadeToggle(500);
+        }
+
+        // 8. 動畫效果 - 滑動
+        function slideDemo() {
+            $("#slideBox").slideToggle(500);
+        }
+
+        // 9. 自訂動畫
+        function animateDemo() {
+            $("#animBox").animate({
+                width: "200px",
+                height: "200px",
+                opacity: 0.5
+            }, 500).animate({
+                width: "100px",
+                height: "100px",
+                opacity: 1
+            }, 500);
+        }
+
+        // 10. AJAX 示範
+        function ajaxDemo() {
+            $("#ajaxResult").html("⏳ 載入中...");
+
+            // 模擬 AJAX 請求
+            setTimeout(function () {
+                const mockData = {
+                    name: "張三",
+                    age: 25,
+                    city: "台北"
+                };
+
+                $("#ajaxResult").html(
+                    "<strong>✅ 資料載入成功！</strong><br>" +
+                    "姓名: " + mockData.name + "<br>" +
+                    "年齡: " + mockData.age + "<br>" +
+                    "城市: " + mockData.city
+                );
+            }, 1000);
+
+           
+            /* 實際 AJAX 用法：
+            $.ajax({
+                url: "/api/data",
+                method: "GET",
+                success: function(data) {
+                    $("#ajaxResult").html("資料：" + JSON.stringify(data));
+                },
+                error: function() {
+                    $("#ajaxResult").html("載入失敗！");
+                }
+            });
+            */
+        }
+
+        // 11. 鏈式呼叫示範
+        function chainDemo() {
+            $("#chainText")
+                .css("color", "blue")
+                .css("font-size", "20px")
+                .slideUp(500)
+                .slideDown(500)
+                .fadeOut(500)
+                .fadeIn(500);
+        }
+
+        // 12. 文件就緒事件
+        $(document).ready(function () {
+            console.log("jQuery 已載入並就緒！");
+
+            // 為所有按鈕加上點擊回饋效果
+            $("button").click(function () {
+                $(this).css("transform", "scale(0.95)");
+                setTimeout(() => {
+                    $(this).css("transform", "scale(1)");
+                }, 100);
+            });
+        });
+    </script>
+</body>
+
+</html>
