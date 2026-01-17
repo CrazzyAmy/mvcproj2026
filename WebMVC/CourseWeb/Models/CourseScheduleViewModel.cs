@@ -9,7 +9,7 @@
         public int Times { get; set; }
         public DateOnly StartDate { get; set; }
         public DateOnly EndDate { get; set; }
-        public string Localation { get; set; }
+        public string Location { get; set; }
         public string Desc { get; set; }
     }
 }

@@ -9,3 +9,15 @@ E:\dotNet\TW202501\WebMVC\CourseService\obj\Debug\net8.0\CourseService.dll
 E:\dotNet\TW202501\WebMVC\CourseService\obj\Debug\net8.0\refint\CourseService.dll
 E:\dotNet\TW202501\WebMVC\CourseService\obj\Debug\net8.0\CourseService.pdb
 E:\dotNet\TW202501\WebMVC\CourseService\obj\Debug\net8.0\ref\CourseService.dll
+C:\Users\User\Downloads\WebMVC20260110\WebMVC\CourseService\bin\Debug\net8.0\CourseService.deps.json
+C:\Users\User\Downloads\WebMVC20260110\WebMVC\CourseService\bin\Debug\net8.0\CourseService.dll
+C:\Users\User\Downloads\WebMVC20260110\WebMVC\CourseService\bin\Debug\net8.0\CourseService.pdb
+C:\Users\User\Downloads\WebMVC20260110\WebMVC\CourseService\obj\Debug\net8.0\CourseService.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\User\Downloads\WebMVC20260110\WebMVC\CourseService\obj\Debug\net8.0\CourseService.AssemblyInfoInputs.cache
+C:\Users\User\Downloads\WebMVC20260110\WebMVC\CourseService\obj\Debug\net8.0\CourseService.AssemblyInfo.cs
+C:\Users\User\Downloads\WebMVC20260110\WebMVC\CourseService\obj\Debug\net8.0\CourseService.csproj.CoreCompileInputs.cache
+C:\Users\User\Downloads\WebMVC20260110\WebMVC\CourseService\obj\Debug\net8.0\CourseService.sourcelink.json
+C:\Users\User\Downloads\WebMVC20260110\WebMVC\CourseService\obj\Debug\net8.0\CourseService.dll
+C:\Users\User\Downloads\WebMVC20260110\WebMVC\CourseService\obj\Debug\net8.0\refint\CourseService.dll
+C:\Users\User\Downloads\WebMVC20260110\WebMVC\CourseService\obj\Debug\net8.0\CourseService.pdb
+C:\Users\User\Downloads\WebMVC20260110\WebMVC\CourseService\obj\Debug\net8.0\ref\CourseService.dll

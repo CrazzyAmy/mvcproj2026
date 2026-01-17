@@ -1,0 +1,106 @@
+﻿@model UserRegisterViewModel;
+@{
+    ViewData["Title"] = "UserRegister";
+}
+@* @section Styles {
+    <style>
+        body {
+            font-family: "Microsoft JhengHei", Arial, sans-serif;
+            background-color: #f0f2f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        /* 登入卡片容器樣式 */
+        .login-container {
+            background-color: #ffffff;
+            padding: 2rem; /* 內距 */
+            border-radius: 8px; /* 圓角 */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* 陰影效果 */
+            width: 100%;
+            max-width: 400px; /* 最大寬度限制 */
+        }
+
+            /* 標題樣式 */
+            .login-container h2 {
+                text-align: center;
+                color: #333;
+                margin-bottom: 1.5rem;
+            }
+
+        /* 表單元素群組 */
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+        /* 標籤樣式 */
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #666;
+            font-weight: bold;
+        }
+
+        /* 輸入框樣式 */
+        input[type="text"],
+        input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box; /* 確保 padding 不會撐開寬度 */
+            font-size: 1rem;
+        }
+
+        /* 輸入框聚焦時的樣式 */
+        input:focus {
+            border-color: #007bff;
+            outline: none;
+        }
+
+        /* 按鈕樣式 */
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 1rem;
+            cursor: pointer;
+            margin-top: 1rem;
+            transition: background-color 0.3s;
+        }
+
+            /* 按鈕滑鼠懸停效果 */
+            button:hover {
+                background-color: #0056b3;
+            }
+    </<style>
+} *@
+<h1>UserRegister</h1>
+<div class="login-container">
+<form asp-action="UserRegister" asp-controller="Member" method="post">
+    @Html.AntiForgeryToken()
+    <div class="form-group">
+        <label for="username">帳號</label>
+        <input type="text" class="username" id="username" />
+    </div>    
+    <div class="form-group">
+        <label for="pw">密碼</label>
+        <input type="password" class="pw" id="pw" />
+    </div>
+    <div class="form-group">
+        <label for="repw">再次確認密碼</label>
+        <input type="password" class="repw" id="repw" />
+    </div>
+    <div class="form-group">
+        <label for="email">電子郵件</label>
+        <input type="text" class="email" id="email" />
+    </div>
+    <button type="submit" class="btn btn-primary mb-3">登入</button>
+</form>
+</div>

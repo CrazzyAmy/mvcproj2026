@@ -5760,23 +5760,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\ianvm\\.nuget\\packages\\": {},
+    "C:\\Users\\User\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "E:\\dotNet\\TW202501\\WebMVC\\WebMVC\\WebMVC.csproj",
+      "projectUniqueName": "C:\\Users\\User\\Downloads\\WebMVC20260110\\WebMVC\\WebMVC\\WebMVC.csproj",
       "projectName": "WebMVC",
-      "projectPath": "E:\\dotNet\\TW202501\\WebMVC\\WebMVC\\WebMVC.csproj",
-      "packagesPath": "C:\\Users\\ianvm\\.nuget\\packages\\",
-      "outputPath": "E:\\dotNet\\TW202501\\WebMVC\\WebMVC\\obj\\",
+      "projectPath": "C:\\Users\\User\\Downloads\\WebMVC20260110\\WebMVC\\WebMVC\\WebMVC.csproj",
+      "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\User\\Downloads\\WebMVC20260110\\WebMVC\\WebMVC\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\ianvm\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -5833,7 +5833,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.308/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.305/PortableRuntimeIdentifierGraph.json"
       }
     }
   }
