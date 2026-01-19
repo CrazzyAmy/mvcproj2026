@@ -5,4 +5,5 @@
 二. 軟體規格
 
 > .net core 8.0
+
 > mssql
