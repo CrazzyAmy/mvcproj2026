@@ -21,3 +21,15 @@ C:\Users\User\Downloads\WebMVC20260110\WebMVC\CourseService\obj\Debug\net8.0\Cou
 C:\Users\User\Downloads\WebMVC20260110\WebMVC\CourseService\obj\Debug\net8.0\refint\CourseService.dll
 C:\Users\User\Downloads\WebMVC20260110\WebMVC\CourseService\obj\Debug\net8.0\CourseService.pdb
 C:\Users\User\Downloads\WebMVC20260110\WebMVC\CourseService\obj\Debug\net8.0\ref\CourseService.dll
+C:\Users\user\Source\Repos\mvcproj2026\WebMVC\CourseService\bin\Debug\net8.0\CourseService.deps.json
+C:\Users\user\Source\Repos\mvcproj2026\WebMVC\CourseService\bin\Debug\net8.0\CourseService.dll
+C:\Users\user\Source\Repos\mvcproj2026\WebMVC\CourseService\bin\Debug\net8.0\CourseService.pdb
+C:\Users\user\Source\Repos\mvcproj2026\WebMVC\CourseService\obj\Debug\net8.0\CourseService.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\user\Source\Repos\mvcproj2026\WebMVC\CourseService\obj\Debug\net8.0\CourseService.AssemblyInfoInputs.cache
+C:\Users\user\Source\Repos\mvcproj2026\WebMVC\CourseService\obj\Debug\net8.0\CourseService.AssemblyInfo.cs
+C:\Users\user\Source\Repos\mvcproj2026\WebMVC\CourseService\obj\Debug\net8.0\CourseService.csproj.CoreCompileInputs.cache
+C:\Users\user\Source\Repos\mvcproj2026\WebMVC\CourseService\obj\Debug\net8.0\CourseService.sourcelink.json
+C:\Users\user\Source\Repos\mvcproj2026\WebMVC\CourseService\obj\Debug\net8.0\CourseService.dll
+C:\Users\user\Source\Repos\mvcproj2026\WebMVC\CourseService\obj\Debug\net8.0\refint\CourseService.dll
+C:\Users\user\Source\Repos\mvcproj2026\WebMVC\CourseService\obj\Debug\net8.0\CourseService.pdb
+C:\Users\user\Source\Repos\mvcproj2026\WebMVC\CourseService\obj\Debug\net8.0\ref\CourseService.dll
